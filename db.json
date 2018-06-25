@@ -1,0 +1,35 @@
+{
+  "items":
+  [
+    {
+      "name": "item1",
+      "flags": [
+        "flower",
+        "heart",
+        "sun",
+        "flash"
+      ]
+    },
+    {
+      "name": "item2",
+      "flags": [
+        "flower",
+        "flash"
+      ]
+    },
+    {
+      "name": "item3",
+      "flags": [
+        "heart",
+        "sun",
+        "flash"
+      ]
+    },
+    {
+      "name": "item4",
+      "flags": [
+        "heart"
+      ]
+    }
+  ]
+}

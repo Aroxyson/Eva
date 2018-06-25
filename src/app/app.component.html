@@ -1,0 +1,20 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="row justify-center">
+      <div class="col-3 mr-auto bg-info">
+        <div>Sort <input type="checkbox"><input type="text"></div>
+        <items
+        *ngFor="let i of items"
+        [item]="i"
+        ></items>
+      </div>
+      <div class="col-2 text-center">INFO</div>
+      <div class="col-3 ml-auto bg-info">
+        <div>Filters:<input type="checkbox" ng-model="filter by Filters"></div>
+        <!-- <items
+        *ngFor="let i of [items]"
+        [item]="i"
+        ></items> -->
+      </div>
+  </div>
+</div>
