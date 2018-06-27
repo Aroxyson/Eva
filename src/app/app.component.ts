@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from './rest-api.service';
-import { ItemsComponent } from './items.component';
+import {ItemsService} from './items.service';
+import { Items } from './items';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [RestApiService, ItemsComponent]
+  providers: [ItemsService]
 })
 export class AppComponent implements OnInit{
-  public items : ItemsComponent[] = [];
+  public items : Items[] = [];
 
-  constructor( private RestApiService:RestApiService ) {}
+  constructor( private itemsService: ItemsService ) {}
 
   public ngOnInit() {
-    this.RestApiService
+    this.itemsService
       .getAllItems()
       .subscribe(
         (items) => {

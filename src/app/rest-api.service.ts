@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { ItemsComponent } from './items.component';
+import { Items } from './items';
 
 const API_URL = environment.apiUrl;
 
@@ -17,12 +17,12 @@ export class RestApiService {
 
   constructor( private http: Http ) {}
 
-  public getAllItems(): Observable<ItemsComponent[]> {
+  public getAllItems(): Observable<Items[]> {
     return this.http
-      .get(API_URL + '/items') //возвращает Observableа
+      .get(API_URL + '/items') //возвращает Observable
       .map(response => {
         const items = response.json();//парсит json ответ
-        return items.map((item_response) => new ItemsComponent(item_response)); //возвращает преобразованный Observable в Items объект
+        return items.map((item_response) => new Items(item_response)); //возвращает преобразованный Observable в Items объект
       })
       .catch(this.handleError);//ловит ошибку
   }
