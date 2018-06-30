@@ -1,6 +1,8 @@
 export class Items {
+
     name: string = '';
-    flags: string = '';
+    flags: Array<string> = [];
+    
     sun: string = '';
     heart: string = '';
     flash: string = '';

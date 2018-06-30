@@ -2,10 +2,9 @@
 <div class="container">
   <div class="row justify-center">
       <div class="col-3 mr-auto bg-info">
-        <div>Sort <input type="checkbox"><input type="text"></div>
+        <div>Sort <input type="checkbox"><input type="text" [ng-model]="name-sort"></div>
         <items
-        *ngFor="let i of items"
-        [item]="i"
+        ng-repeat="item in items | filter:{item.name:name-sort}"
         ></items>
       </div>
       <div class="col-2 text-center">INFO</div>
