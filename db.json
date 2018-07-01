@@ -2,7 +2,7 @@
   "items":
   [
     {
-      "name": "item1",
+      "name": "banana",
       "flags": [
         "flower",
         "heart",
@@ -11,14 +11,14 @@
       ]
     },
     {
-      "name": "item2",
+      "name": "apple",
       "flags": [
         "flower",
         "flash"
       ]
     },
     {
-      "name": "item3",
+      "name": "watermelon",
       "flags": [
         "heart",
         "sun",
@@ -26,7 +26,21 @@
       ]
     },
     {
-      "name": "item4",
+      "name": "orange",
+      "flags": [
+        "heart"
+      ]
+    },
+    {
+      "name": "tatermelon",
+      "flags": [
+        "heart",
+        "sun",
+        "flash"
+      ]
+    },
+    {
+      "name": "corange",
       "flags": [
         "heart"
       ]

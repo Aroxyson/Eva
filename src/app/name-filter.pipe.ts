@@ -1,16 +1,17 @@
-// import { Pipe, PipeTransform, Input } from '@angular/core';
-// import { Items } from './items';
+import { Pipe, PipeTransform } from '@angular/core';
 
-// @Pipe({name: 'NameFilter'})
+@Pipe({name: 'filter'})
 
-// export class NameFilter implements PipeTransform {
+export class NameFilter implements PipeTransform {
 
-//     @Input() items: Items;
+    transform(items: any[], searchText: string): any[] {
+        if(!items) return []; //если объект для сравнения не передан, вернуть пустой массив
+        if(!searchText) return items; //если сравниваемая строка не передана, вернуть исходный объект
 
-//     transform(items: Items, searchString: any): any  {        
-//         console.log('searchString', searchString);
-//         return searchString
-//             ? clients.filter(client => client.name.toLowerCase().indexOf(searchString) !== -1)
-//             : clients;
-//     };
-//     }
+        searchText = searchText.toLowerCase();
+        
+        return items.filter( it => {
+            return it['name'].toLowerCase().includes(searchText);
+        });
+       }
+    }

@@ -15,5 +15,4 @@ export class ItemsComponent {
 
     @Input() item: ItemsComponent;
 
-
 }

@@ -2,18 +2,17 @@
 <div class="container">
   <div class="row justify-center">
       <div class="col-3 mr-auto bg-info">
-        <div>Sort <input type="checkbox"><input type="text" [ng-model]="name-sort"></div>
+        <div>Sort <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort"></div>
         <items
-        ng-repeat="item in items | filter:{item.name:name-sort}"
+        *ngFor="let item of items | filter : namesort | sort:path:order"
+        [item] = "item"
         ></items>
       </div>
       <div class="col-2 text-center">INFO</div>
       <div class="col-3 ml-auto bg-info">
-        <div>Filters:<input type="checkbox" ng-model="filter by Filters"></div>
-        <!-- <items
-        *ngFor="let i of [items]"
-        [item]="i"
-        ></items> -->
-      </div>
+        <items-r
+        *ngFor="let itemR of itemsRight"
+        [itemR] = "itemR"
+        ></items-r>
   </div>
 </div>
