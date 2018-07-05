@@ -9,7 +9,7 @@ import { Items } from './items';
   providers: [ItemsService]
 })
 export class AppComponent implements OnInit{
-  public items : Items[] = [];
+  public itemsLeft : Items[] = [];
   public itemsRight : Items[] = [];
   path: string[] = ['name'];
   order: number = -1;
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
       .getAllItems()
       .subscribe(
         (items) => {
-          this.items = items;
+          this.itemsLeft = items;
           console.log(this.itemsRight);
         }
       )

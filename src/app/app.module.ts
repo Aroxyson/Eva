@@ -2,7 +2,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ItemsComponent } from './items.component';
+import { ItemsLComponent } from './items-l.component';
 import { RestApiService } from './rest-api.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { ItemsRComponent } from './items-r.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ItemsComponent,
+    ItemsLComponent,
     ItemsRComponent,
     NameFilter,
     NameSort
