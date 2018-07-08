@@ -8,13 +8,17 @@
         [itemL] = "itemL"
         ></items-l>
       </div>
-      <div class="col-2 text-center">INFO</div>
+      <div class="col-2 text-center"></div>
       <div class="col-3 ml-auto bg-info">
-        <!-- РАБОТАЕТ И С ОДНИМ ЭКЗЕМЛЯРОМ -->
-        <items-r 
-        *ngFor="let itemR of itemsRight" 
+        <span>Filter: </span>
+        <div *ngFor="let flag of filterFlags">
+          <label class="form-check-label">
+            <input type="checkbox" [value]="flag.name" (change)="addFlag($event.srcElement, flag.name)"> {{flag.name}}
+          </label>
+        </div>
+        <items-r
+        *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
         [itemR] = "itemR"
         ></items-r>
-        <!-- РАБОТАЕТ И С ОДНИМ ЭКЗЕМЛЯРОМ -->
   </div>
 </div>

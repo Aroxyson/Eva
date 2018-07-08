@@ -9,11 +9,7 @@ import { Checkboxes } from "./checkboxes.component";
                 <img *ngIf="itemR.flash" alt="flash" src="{{itemR.flash}}">
                 <img *ngIf="itemR.flower" alt="flower" src="{{itemR.flower}}">
 
-                <img 
-                *ngFor="let flag of itemR.flags"
-                class="{{flag}}" style="width:10px;height:10px"
-                (click)="addFlag(flag)" 
-                >
+                
                </div>`
 })
 
@@ -21,19 +17,10 @@ export class ItemsRComponent {
 
     @Input() itemR: ItemsRComponent;
 
-   // public checkArray: Checkboxes[] = [];
-    // public flags: Array<string> = [];
-    
-    // constructor(public flags_in: any[]){
-    //     this.flags = flags_in;
-    // }
-
-    addFlag( flag: string) {
-        if (this.checkArray.join().search(flag) == -1) {
-            this.checkArray.push(flag);
-            console.log(this.checkArray);
-        }
-    }
-
-
 }
+
+// <img 
+//                 *ngFor="let flag of itemR.flags"
+//                 class="{{flag}}" style="width:10px;height:10px"
+//                 (click)="addFlag(flag)" 
+//                 >

@@ -11,5 +11,7 @@ export class Checkboxes {
     //     console.log(this.checkArray);
     // }
 
-    constructor(){}
+    constructor(values: Object = {}) {
+    Object.assign(this, values);
+}
 }

@@ -14,6 +14,8 @@ export class AppComponent implements OnInit{
   path: string[] = ['name'];
   order: number = -1;
   checkboxFlag:boolean;
+  public checkedFlags: Array<string>;
+  public filterFlags: Array<any>;
 
   constructor( private itemsService: ItemsService ) {}
   
@@ -34,6 +36,42 @@ export class AppComponent implements OnInit{
         console.log(this.itemsRight);
       }
     )
+    
+    this.checkedFlags = [];
+    this.filterFlags = [
+      {
+        name : "flower",
+      },
+      {
+        name : "sun",
+      },
+      {
+        name : "flash",
+      },
+      {
+        name : "heart",
+      }
+    ]
+  }
+
+  addFlag( input: HTMLInputElement, flag: string ) {
+    var index = this.checkedFlags.indexOf(flag);
+    if  (input.checked === true) {
+      if (index == -1) {
+          this.checkedFlags.push(flag);
+      }
+    }
+    else {
+      if (index != -1) {
+        this.checkedFlags.splice(index,1);
+      }
+    }
+    //console.log(this.checkedFlags);
+  }
+
+  getCheckedFlags() {
+    console.log('getCheckedFlags::'+this.checkedFlags);
+    return this.checkedFlags;
   }
 
   sortItems(prop: string) {
@@ -44,5 +82,7 @@ export class AppComponent implements OnInit{
       this.order = -1;// change order
     return false; // do not reload
   }
+
+
 
 }

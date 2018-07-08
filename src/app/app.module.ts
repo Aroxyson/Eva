@@ -9,14 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NameFilter } from './name-filter.pipe';
 import { NameSort } from './name-sort.pipe';
 import { ItemsRComponent } from './items-r.component';
-
+import { CheckboxFilterPipe } from './checkbox-filter.pipe'; 
 @NgModule({
   declarations: [
     AppComponent,
     ItemsLComponent,
     ItemsRComponent,
     NameFilter,
-    NameSort
+    NameSort,
+    CheckboxFilterPipe
   ],
   imports: [
     HttpModule,
