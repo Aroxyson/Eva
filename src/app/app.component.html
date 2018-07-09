@@ -1,24 +1,41 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
   <div class="row justify-center">
+
       <div class="col-3 mr-auto bg-info">
         <div>Sort <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort"></div>
-        <items-l
-        *ngFor="let itemL of itemsLeft | filter : namesort | sort:path:order"
-        [itemL] = "itemL"
-        ></items-l>
+        <div [dragula]='"bag-items"' [dragulaModel]="itemsLeft" [dragulaOptions]="options">
+          <items-l
+          *ngFor="let itemL of itemsLeft | filter : namesort | sort:path:order"
+          [itemL] = "itemL"
+          (click) = "setInfo(itemL)"
+          (ngModel) = "itemInfo"
+          ></items-l>
+        </div>
       </div>
-      <div class="col-2 text-center"></div>
+
+      <div class="col-2 text-center">INFO
+        <div>{{itemInfo.name}}</div>
+        <div>{{itemInfo.flags}}</div>
+      </div>
+
       <div class="col-3 ml-auto bg-info">
         <span>Filter: </span>
-        <div *ngFor="let flag of filterFlags">
+        <div *ngFor="let flag of filterFlags" >
           <label class="form-check-label">
-            <input type="checkbox" [value]="flag.name" (change)="addFlag($event.srcElement, flag.name)"> {{flag.name}}
+            <input [class.className]="checked" [checked]="checked" [className]="flag.name" type="checkbox" [value]="flag.name" (change)="addFlag($event.srcElement, flag.name)"><span></span> {{flag.name}}
           </label>
         </div>
-        <items-r
-        *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
-        [itemR] = "itemR"
-        ></items-r>
+        
+        <div [dragula]='"bag-items"' [dragulaModel]="itemsRight" [dragulaOptions]="options">
+          <items-r 
+          *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
+          [itemR] = "itemR"
+          (click) = "setInfo(itemR)"
+          (ngModel) = "itemInfo"
+          ></items-r>
+        </div>
+      </div>
+
   </div>
 </div>

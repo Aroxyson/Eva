@@ -16,6 +16,8 @@ export class AppComponent implements OnInit{
   checkboxFlag:boolean;
   public checkedFlags: Array<string>;
   public filterFlags: Array<any>;
+  public options: any;
+  public itemInfo:Items;
 
   constructor( private itemsService: ItemsService ) {}
   
@@ -25,7 +27,7 @@ export class AppComponent implements OnInit{
       .subscribe(
         (items) => {
           this.itemsLeft = items;
-          console.log(this.itemsRight);
+          console.log(this.itemsLeft);
         }
       )
     this.itemsService
@@ -36,7 +38,7 @@ export class AppComponent implements OnInit{
         console.log(this.itemsRight);
       }
     )
-    
+    this.itemInfo = new Items;
     this.checkedFlags = [];
     this.filterFlags = [
       {
@@ -51,7 +53,16 @@ export class AppComponent implements OnInit{
       {
         name : "heart",
       }
-    ]
+    ];
+    this.options = {
+      removeOnSpill: false,
+      revertOnSpill: false,
+      copy: false
+    };
+  }
+
+  setInfo( item: any) {
+    this.itemInfo = item;
   }
 
   addFlag( input: HTMLInputElement, flag: string ) {
@@ -70,7 +81,7 @@ export class AppComponent implements OnInit{
   }
 
   getCheckedFlags() {
-    console.log('getCheckedFlags::'+this.checkedFlags);
+    //console.log('getCheckedFlags::'+this.checkedFlags);
     return this.checkedFlags;
   }
 

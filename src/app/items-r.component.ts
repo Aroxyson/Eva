@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { Checkboxes } from "./checkboxes.component";
 @Component ({
     selector: "items-r",
     template: ` <div class="bg-success col-12 mb-1 mt-1 border">

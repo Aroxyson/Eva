@@ -10,6 +10,7 @@ import { NameFilter } from './name-filter.pipe';
 import { NameSort } from './name-sort.pipe';
 import { ItemsRComponent } from './items-r.component';
 import { CheckboxFilterPipe } from './checkbox-filter.pipe'; 
+import { DragulaModule } from 'ng2-dragula';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { CheckboxFilterPipe } from './checkbox-filter.pipe';
     HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DragulaModule
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]
