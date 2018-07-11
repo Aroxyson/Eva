@@ -1,0 +1,37 @@
+.flower > span{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    background: url(images/flower.png);
+}
+input[type=checkbox] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+.sun,.sun > span{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    background: url(images/sun.png);
+}
+.heart > span{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    background: url(images/heart.png);
+}
+label > span{
+    position: relative;
+    width: 32px;
+    height: 32px;
+    background: url(images/flash.png);
+}
+
+label {
+    width: 32px;
+    height: 32px;
+}
+
+label > input[type=checkbox]:checked + span{
+    border:4px solid black;
+ }

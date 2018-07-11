@@ -8,6 +8,8 @@ import 'rxjs/add/observable/throw';
 import { Items } from './items';
 
 const API_URL = environment.apiUrl;
+const TEST_URL = '/assets/db.json';
+const limit = 100;
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +17,30 @@ const API_URL = environment.apiUrl;
 
 export class RestApiService {
 
+  counter:number = 0;
+  out: Array<Items> = [];
+
   constructor( private http: Http ) {}
+
+
 
   public getAllItems(): Observable<Items[]> {
     return this.http
-      .get(API_URL + '/items') //возвращает Observable
+      .get(TEST_URL) //возвращает Observable
       .map(response => {
         const items = response.json();//парсит json ответ
-        return items.map((item_response) => new Items(item_response)); //возвращает преобразованный Observable в Items объект
+        this.out = [];
+        this.counter = 0;
+        for(var key in items) {
+          if (this.counter < limit) {
+            this.out.push(new Items(items[key]));
+            this.counter++;
+          }
+        }
+        return this.out;
+        // return items.map((item_response ) => {
+        //     new Items(item_response);
+        //    }) //возвращает преобразованный Observable в Items объект
       })
       .catch(this.handleError);//ловит ошибку
   }

@@ -27,7 +27,7 @@ export class AppComponent implements OnInit{
       .subscribe(
         (items) => {
           this.itemsLeft = items;
-          console.log(this.itemsLeft);
+          console.log('itemsLeft::',this.itemsLeft);
         }
       )
     this.itemsService
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit{
     .subscribe(
       (items) => {
         this.itemsRight = items;
-        console.log(this.itemsRight);
+        console.log('itemsRight::',this.itemsRight);
       }
     )
     this.itemInfo = new Items;

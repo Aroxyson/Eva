@@ -8,7 +8,7 @@ export class ItemsService {
 
   // Placeholder for last id so we can simulate
   // automatic incrementing of ids
-  lastId: number = 0;
+  counter: number = 0;
 
   // Placeholder for todos
   items: Items[] = [];
@@ -17,6 +17,6 @@ export class ItemsService {
   }
 
   getAllItems(): Observable<Items[]> {
-    return this.api.getAllItems();
+      return this.api.getAllItems();
   }
 }
