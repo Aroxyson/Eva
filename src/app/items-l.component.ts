@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 
 @Component ({
     selector: "items-l",
-    template: `<div class="bg-success col-12 mb-1 mt-1 border">
+    template: `<div class="bg-success col-12 mb-1 mt-1 border" [class.border-danger]="itemL == itemInfo">
                 <span>{{ itemL.name }}</span>
                 <img *ngIf="itemL.sun" alt="Sun" src="{{itemL.sun}}">
                 <img *ngIf="itemL.heart" alt="heart" src="{{itemL.heart}}">
@@ -14,5 +14,6 @@ import { Component, Input } from "@angular/core";
 export class ItemsLComponent {
 
     @Input() itemL: ItemsLComponent;
+    @Input() itemInfo: ItemsLComponent;
 
 }

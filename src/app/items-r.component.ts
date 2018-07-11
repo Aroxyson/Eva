@@ -1,25 +1,21 @@
 import { Component, Input } from "@angular/core";
 @Component ({
     selector: "items-r",
-    template: ` <div class="bg-success col-12 mb-1 mt-1 border">
+    template: ` <div class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemR == itemInfo">
                 <span>{{ itemR.name }}</span>
-                <img *ngIf="itemR.sun" alt="Sun" src="{{itemR.sun}}" >
-                <img *ngIf="itemR.heart" alt="heart" src="{{itemR.heart}}">
-                <img *ngIf="itemR.flash" alt="flash" src="{{itemR.flash}}">
-                <img *ngIf="itemR.flower" alt="flower" src="{{itemR.flower}}">
+               
 
-                
+                <div 
+                *ngFor="let flag of itemR.flags"    
+                [className]="flag" 
+                ></div>
                </div>`
 })
 
 export class ItemsRComponent {
 
     @Input() itemR: ItemsRComponent;
+    @Input() itemInfo: ItemsRComponent;
 
 }
 
-// <img 
-//                 *ngFor="let flag of itemR.flags"
-//                 class="{{flag}}" style="width:10px;height:10px"
-//                 (click)="addFlag(flag)" 
-//                 >

@@ -10,6 +10,7 @@
           [itemL] = "itemL"
           (click) = "setInfo(itemL)"
           (ngModel) = "itemInfo"
+          [itemInfo] = "itemInfo"
           ></items-l>
         </div>
       </div>
@@ -23,7 +24,7 @@
         
         <div class="row">
             <span>Filter: </span>
-          <label *ngFor="let flag of filterFlags"  [className]="flag.name">
+          <label *ngFor="let flag of filterFlags"  [className]="flag.name" [class.checked]="checked == true">
             <input [class.className]="checked" [checked]="checked"  type="checkbox" [value]="flag.name" (change)="addFlag($event.srcElement, flag.name)">
             <span></span>
           </label>
@@ -35,6 +36,7 @@
           [itemR] = "itemR"
           (click) = "setInfo(itemR)"
           (ngModel) = "itemInfo"
+          [itemInfo] = "itemInfo"
           ></items-r>
         </div>
       </div>
