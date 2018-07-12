@@ -43,15 +43,19 @@ export class AppComponent implements OnInit{
     this.filterFlags = [
       {
         name : "flower",
+        checked: false
       },
       {
         name : "sun",
+        checked: false
       },
       {
         name : "flash",
+        checked: false
       },
       {
         name : "heart",
+        checked: false
       }
     ];
     this.options = {
@@ -61,27 +65,28 @@ export class AppComponent implements OnInit{
     };
   }
 
-  setInfo( item: any) {
+  setInfo( item: Items) {
+    console.log("item::",item);
     this.itemInfo = item;
   }
 
-  addFlag( input: HTMLInputElement, flag: string ) {
-    var index = this.checkedFlags.indexOf(flag);
+  addFlag( input: HTMLInputElement, flag: any ) {
+    var index = this.checkedFlags.indexOf(flag.name);
     if  (input.checked === true) {
       if (index == -1) {
-          this.checkedFlags.push(flag);
+          this.checkedFlags.push(flag.name);
+          flag.checked = true;
       }
     }
     else {
       if (index != -1) {
         this.checkedFlags.splice(index,1);
+        flag.checked = false;
       }
     }
-    //console.log(this.checkedFlags);
   }
 
   getCheckedFlags() {
-    //console.log('getCheckedFlags::'+this.checkedFlags);
     return this.checkedFlags;
   }
 

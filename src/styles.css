@@ -1,41 +1,48 @@
-.flower{
-    position: relative;
-    width: 32px;
-    height: 32px;
-    background: url(images/flower.png);
+items-l, items-r  {
+    cursor: pointer;
 }
-
+.flags {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+.list {
+    overflow: auto;
+    height:90vh;
+}
+.info {
+    height: 100px;
+    background: #c8d6da
+}
+.flower {
+    background: url(images/flower24.png);
+}
 .flash{
-    position: relative;
-    width: 32px;
-    height: 32px;
-    background: url(images/flash.png);
-}
-
-input[type=checkbox] {
-    position: absolute;
-    clip: rect(0, 0, 0, 0);
+    background: url(images/flash24.png);
 }
 .sun {
-    position: relative;
-    width: 32px;
-    height: 32px;
-    background: url(images/sun.png);
+    background: url(images/sun24.png);
 }
 .heart{
-    position: relative;
-    width: 32px;
-    height: 32px;
-    background: url(images/heart.png);
+    background: url(images/heart24.png);
 }
-
-label {
-    width: 32px; 
-    height: 32px;
+.checkbox input[type=checkbox] {
+    display:none;
 }
-label > input[type=checkbox]:checked{
-    width: 5px!important;
+.checkbox label {
+	width: 24px;
+    height: 24px;
+    filter: grayscale(100%);
+    cursor: pointer;
+}
+ .checkbox {
+    position:relative;
  }
- .checked {
-    width: 5px!important;
+
+ .inactive {
+    filter: grayscale(100%);
+ }
+
+ .active {
+    filter: grayscale(0%) !important;
  }

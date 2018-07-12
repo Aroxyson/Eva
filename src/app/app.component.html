@@ -3,8 +3,10 @@
   <div class="row justify-center">
 
       <div class="col-3 mr-auto bg-info">
-        <div>Sort <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort"></div>
-        <div [dragula]='"bag-items"' [dragulaModel]="itemsLeft" [dragulaOptions]="options">
+        <div class="col-12 d-flex p-2">Sort: 
+          <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort">
+        </div>
+        <!-- <div [dragula]='"bag-items"' [dragulaModel]="itemsLeft" [dragulaOptions]="options" class="list"> -->
           <items-l
           *ngFor="let itemL of itemsLeft | filter : namesort | sort:path:order"
           [itemL] = "itemL"
@@ -12,25 +14,28 @@
           (ngModel) = "itemInfo"
           [itemInfo] = "itemInfo"
           ></items-l>
-        </div>
+        <!-- </div> -->
       </div>
 
-      <div class="col-2 text-center">INFO
-        <div>{{itemInfo.name}}</div>
-        <div>{{itemInfo.flags}}</div>
+      <div class="col-3 text-center info py-2">INFO
+        <div class="text-left">Name : {{itemInfo.name}}</div>
+        <div class="d-flex">Flags : 
+          <div *ngFor="let flag of itemInfo.flags" class="flags {{flag}}"></div>
+        </div>
       </div>
 
       <div class="col-3 ml-auto bg-info">
         
-        <div class="row">
+        <div class="col-12 d-flex p-2">
             <span>Filter: </span>
-          <label *ngFor="let flag of filterFlags"  [className]="flag.name" [class.checked]="checked == true">
-            <input [class.className]="checked" [checked]="checked"  type="checkbox" [value]="flag.name" (change)="addFlag($event.srcElement, flag.name)">
-            <span></span>
-          </label>
+          <div class="checkbox" *ngFor="let flag of filterFlags" >
+            <input  type="checkbox" id={{flag.name}} 
+            (change)="addFlag($event.srcElement, flag)">
+            <label for="{{flag.name}}" class="{{flag.name}}" [class.active]="flag.checked"></label>
+          </div>
         </div>
         
-        <div [dragula]='"bag-items"' [dragulaModel]="itemsRight" [dragulaOptions]="options">
+        <!-- <div [dragula]='"bag-items"' [dragulaModel]="itemsRight" [dragulaOptions]="options" class="list"> -->
           <items-r 
           *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
           [itemR] = "itemR"
@@ -38,7 +43,7 @@
           (ngModel) = "itemInfo"
           [itemInfo] = "itemInfo"
           ></items-r>
-        </div>
+        <!-- </div> -->
       </div>
 
   </div>

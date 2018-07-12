@@ -42,5 +42,149 @@
     "flags": [
       "heart"
     ]
+  },
+  {
+    "name": "pineapple",
+    "flags": [
+      "flower",
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "strawberry",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "lemon",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "pear",
+    "flags": [
+      "sun"
+    ]
+  },
+  {
+    "name": "calamondin",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "mango",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "olive",
+    "flags": [
+      "flower",
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "pomelo",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "avocado",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "cherry",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "durian",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "cashew",
+    "flags": [
+      "flower"
+    ]
+  },
+  {
+    "name": "coconut",
+    "flags": [
+      "heart",
+      "sun",
+      "flash",
+      "flower"
+    ]
+  },
+  {
+    "name": "kiwi",
+    "flags": [
+      "flower"
+    ]
+  },
+  {
+    "name": "nectarine",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "citron",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "grapes",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "cranberry",
+    "flags": [
+      "heart",
+      "sun"
+    ]
+  },
+  {
+    "name": "raspberry",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "peanut",
+    "flags": [
+      "heart",
+      "flash"
+    ]
   }
 ]
