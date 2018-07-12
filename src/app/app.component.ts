@@ -59,8 +59,8 @@ export class AppComponent implements OnInit{
       }
     ];
     this.options = {
-      removeOnSpill: false,
-      revertOnSpill: false,
+      removeOnSpill: true,
+      revertOnSpill: true,
       copy: false
     };
   }

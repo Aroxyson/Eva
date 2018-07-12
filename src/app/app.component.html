@@ -6,7 +6,8 @@
         <div class="col-12 d-flex p-2">Sort: 
           <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort">
         </div>
-        <!-- <div [dragula]='"bag-items"' [dragulaModel]="itemsLeft" [dragulaOptions]="options" class="list"> -->
+        {{itemsLeft.length}}
+        <div [dragula]='"bag-items"' [dragulaModel]="itemsLeft" [dragulaOptions]="options" class="list">
           <items-l
           *ngFor="let itemL of itemsLeft | filter : namesort | sort:path:order"
           [itemL] = "itemL"
@@ -14,7 +15,8 @@
           (ngModel) = "itemInfo"
           [itemInfo] = "itemInfo"
           ></items-l>
-        <!-- </div> -->
+        </div>
+
       </div>
 
       <div class="col-3 text-center info py-2">INFO
@@ -30,12 +32,12 @@
             <span>Filter: </span>
           <div class="checkbox" *ngFor="let flag of filterFlags" >
             <input  type="checkbox" id={{flag.name}} 
-            (change)="addFlag($event.srcElement, flag)">
+            (change)="addFlag($event.target, flag)">
             <label for="{{flag.name}}" class="{{flag.name}}" [class.active]="flag.checked"></label>
           </div>
         </div>
-        
-        <!-- <div [dragula]='"bag-items"' [dragulaModel]="itemsRight" [dragulaOptions]="options" class="list"> -->
+        {{itemsRight.length}}
+        <div [dragula]='"bag-items"' [dragulaModel]="itemsRight" [dragulaOptions]="options" class="list">
           <items-r 
           *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
           [itemR] = "itemR"
@@ -43,7 +45,7 @@
           (ngModel) = "itemInfo"
           [itemInfo] = "itemInfo"
           ></items-r>
-        <!-- </div> -->
+        </div>
       </div>
 
   </div>

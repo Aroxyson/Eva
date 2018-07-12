@@ -1,0 +1,55 @@
+[
+  {
+    "name": "banana",
+    "flags": [
+      "flower",
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "apple",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "watermelon",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "orange",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "tatermelon",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "corange",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "pineapple",
+    "flags": [
+      "flower",
+      "heart",
+      "sun",
+      "flash"
+    ]
+  }
+]
