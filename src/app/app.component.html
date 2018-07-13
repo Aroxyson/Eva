@@ -6,15 +6,15 @@
         <div class="col-12 d-flex p-2">Sort: 
           <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort">
         </div>
-        {{itemsLeft.length}}
-        <div [dragula]='"bag-items"' [dragulaModel]="itemsLeft" [dragulaOptions]="options" class="list">
-          <items-l
-          *ngFor="let itemL of itemsLeft | filter : namesort | sort:path:order"
-          [itemL] = "itemL"
-          (click) = "setInfo(itemL)"
-          (ngModel) = "itemInfo"
-          [itemInfo] = "itemInfo"
-          ></items-l>
+        <input type="button" (click)="showItems(itemsLeft, 'itemsLeft')" text="Show">
+
+        <div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
+            <items-l draggable [dragScope]="'items-r'" [dragData]="itemL" 
+            class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemL == itemInfo"
+            *ngFor="let itemL of itemsLeft | filter : namesort | sort:path:order"
+            [itemL] = "itemL"
+            (click) = "setInfo(itemL)"
+            ></items-l>
         </div>
 
       </div>
@@ -36,16 +36,18 @@
             <label for="{{flag.name}}" class="{{flag.name}}" [class.active]="flag.checked"></label>
           </div>
         </div>
-        {{itemsRight.length}}
-        <div [dragula]='"bag-items"' [dragulaModel]="itemsRight" [dragulaOptions]="options" class="list">
-          <items-r 
-          *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
-          [itemR] = "itemR"
-          (click) = "setInfo(itemR)"
-          (ngModel) = "itemInfo"
-          [itemInfo] = "itemInfo"
-          ></items-r>
+        
+        <input type="button" (click)="showItems(itemsRight, 'itemsRight')">
+
+        <div droppable (onDrop)="onItemDrop($event, true)" [dropScope]="'items-r'" class="list">
+            <items-r draggable [dragData]="itemR" [dragScope]="'items-l'"  
+            class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemR == itemInfo"
+            *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
+            [itemR] = "itemR"
+            (click) = "setInfo(itemR)"
+            ></items-r>
         </div>
+
       </div>
 
   </div>

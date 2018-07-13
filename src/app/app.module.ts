@@ -11,6 +11,8 @@ import { NameSort } from './name-sort.pipe';
 import { ItemsRComponent } from './items-r.component';
 import { CheckboxFilterPipe } from './checkbox-filter.pipe'; 
 import { DragulaModule } from 'ng2-dragula';
+import { NgDragDropModule } from 'ng-drag-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,12 +23,13 @@ import { DragulaModule } from 'ng2-dragula';
     CheckboxFilterPipe
   ],
   imports: [
+    DragulaModule,
     HttpModule,
     HttpClientModule,
     BrowserModule,
+    NgDragDropModule.forRoot(),
     ReactiveFormsModule,
-    FormsModule,
-    DragulaModule
+    FormsModule
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]

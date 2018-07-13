@@ -2,14 +2,13 @@ import { Component, Input } from "@angular/core";
 
 @Component ({
     selector: "items-l",
-    template: `<div class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemL == itemInfo">
-                <span>{{ itemL.name }}</span>
-                
+    template: ` <span>{{ itemL.name }}</span>
+                <div class="ml-auto d-flex">
                 <div 
                 *ngFor="let flag of itemL.flags"    
                 class="flags {{flag}}" 
                 ></div>
-               </div>`
+                </div>`
 })
 
 export class ItemsLComponent {

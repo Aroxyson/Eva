@@ -59,7 +59,7 @@ export class AppComponent implements OnInit{
       }
     ];
     this.options = {
-      removeOnSpill: true,
+      removeOnSpill: false,
       revertOnSpill: true,
       copy: false
     };
@@ -86,6 +86,24 @@ export class AppComponent implements OnInit{
     }
   }
 
+  showItems( items: any, LR: string) {
+    console.log(LR,'=>',items);
+  }
+
+  onItemDrop(e: any, order: boolean) {
+    var indexL = this.itemsLeft.indexOf(e.dragData);
+    var indexR = this.itemsRight.indexOf(e.dragData);
+    if (order) {
+      console.log('Слева направо');
+      this.itemsRight.push(e.dragData);
+      this.itemsLeft.splice(indexL,1);
+    }
+    else {
+      console.log('Справа налево');
+      this.itemsLeft.push(e.dragData);
+      this.itemsRight.splice(indexR,1);
+    }
+}
   getCheckedFlags() {
     return this.checkedFlags;
   }
