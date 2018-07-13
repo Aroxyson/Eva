@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { Items } from './items';
+import { Item } from './item';
 
 const API_URL = environment.apiUrl;
 const TEST_URL = '/assets/db.json';
@@ -18,13 +18,11 @@ const limit = 100;
 export class RestApiService {
 
   counter:number = 0;
-  out: Array<Items> = [];
+  out: Array<Item> = [];
 
   constructor( private http: Http ) {}
 
-
-
-  public getAllItems(): Observable<Items[]> {
+  public getAllItems(): Observable<Item[]> {
     return this.http
       .get(TEST_URL) //возвращает Observable
       .map(response => {
@@ -33,14 +31,11 @@ export class RestApiService {
         this.counter = 0;
         for(var key in items) {
           if (this.counter < limit) {
-            this.out.push(new Items(items[key]));
+            this.out.push(new Item(items[key]));
             this.counter++;
           }
         }
         return this.out;
-        // return items.map((item_response ) => {
-        //     new Items(item_response);
-        //    }) //возвращает преобразованный Observable в Items объект
       })
       .catch(this.handleError);//ловит ошибку
   }

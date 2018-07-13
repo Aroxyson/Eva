@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ItemsService} from './items.service';
-import { Items } from './items';
+import { Item } from './item';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +9,15 @@ import { Items } from './items';
   providers: [ItemsService]
 })
 export class AppComponent implements OnInit{
-  public itemsLeft : Items[] = [];
-  public itemsRight : Items[] = [];
+  public itemsLeft : Item[] = [];
+  public itemsRight : Item[] = [];
   path: string[] = ['name'];
   order: number = -1;
   checkboxFlag:boolean;
   public checkedFlags: Array<string>;
   public filterFlags: Array<any>;
   public options: any;
-  public itemInfo:Items;
+  public itemInfo:Item;
 
   constructor( private itemsService: ItemsService ) {}
   
@@ -38,8 +38,9 @@ export class AppComponent implements OnInit{
         console.log('itemsRight::',this.itemsRight);
       }
     )
-    this.itemInfo = new Items;
+    this.itemInfo = new Item;
     this.checkedFlags = [];
+
     this.filterFlags = [
       {
         name : "flower",
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit{
         checked: false
       }
     ];
+
     this.options = {
       removeOnSpill: false,
       revertOnSpill: true,
@@ -65,7 +67,7 @@ export class AppComponent implements OnInit{
     };
   }
 
-  setInfo( item: Items) {
+  setInfo( item: Item) {
     console.log("item::",item);
     this.itemInfo = item;
   }
@@ -86,26 +88,19 @@ export class AppComponent implements OnInit{
     }
   }
 
-  showItems( items: any, LR: string) {
-    console.log(LR,'=>',items);
-  }
-
   onItemDrop(e: any, order: boolean) {
     var indexL = this.itemsLeft.indexOf(e.dragData);
     var indexR = this.itemsRight.indexOf(e.dragData);
     if (order) {
-      console.log('Слева направо');
+      //Слева направо
       this.itemsRight.push(e.dragData);
       this.itemsLeft.splice(indexL,1);
     }
     else {
-      console.log('Справа налево');
+     //Справа налево
       this.itemsLeft.push(e.dragData);
       this.itemsRight.splice(indexR,1);
     }
-}
-  getCheckedFlags() {
-    return this.checkedFlags;
   }
 
   sortItems(prop: string) {
@@ -113,10 +108,8 @@ export class AppComponent implements OnInit{
     if (this.checkboxFlag == true)
       this.order = 1;
     else
-      this.order = -1;// change order
-    return false; // do not reload
+      this.order = -1;
+    return false;
   }
-
-
 
 }

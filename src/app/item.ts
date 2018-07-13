@@ -1,4 +1,4 @@
-export class Items {
+export class Item {
 
     name: string = '';
     flags: Array<string> = [];

@@ -6,7 +6,6 @@
         <div class="col-12 d-flex p-2">Sort: 
           <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort">
         </div>
-        <input type="button" (click)="showItems(itemsLeft, 'itemsLeft')" text="Show">
 
         <div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
             <items-l draggable [dragScope]="'items-r'" [dragData]="itemL" 
@@ -36,13 +35,11 @@
             <label for="{{flag.name}}" class="{{flag.name}}" [class.active]="flag.checked"></label>
           </div>
         </div>
-        
-        <input type="button" (click)="showItems(itemsRight, 'itemsRight')">
 
         <div droppable (onDrop)="onItemDrop($event, true)" [dropScope]="'items-r'" class="list">
             <items-r draggable [dragData]="itemR" [dragScope]="'items-l'"  
             class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemR == itemInfo"
-            *ngFor="let itemR of itemsRight | checkfilter: getCheckedFlags()" 
+            *ngFor="let itemR of itemsRight | checkfilter: checkedFlags" 
             [itemR] = "itemR"
             (click) = "setInfo(itemR)"
             ></items-r>

@@ -11,8 +11,8 @@ declare global {
 })
 export class CheckboxFilterPipe implements PipeTransform {
   transform(items: any, checkedFlags: Array<any>): any {
-    //console.log('Filtering ..');
-    //console.log('CheckboxFilterPipe::'+checkedFlags);
+    var start = new Date();
+
     if (checkedFlags && Array.isArray(items)) {
       if (!checkedFlags || checkedFlags.length === 0) { return items; }
       
@@ -20,8 +20,8 @@ export class CheckboxFilterPipe implements PipeTransform {
         return this.filter(function(i) {return !(a.indexOf(i) > -1);});
       };
 
-      return items.filter( item => 
-        {
+      return items.filter( item => {
+          //console.log('Process time: ' + (new Date() - start));
           return (checkedFlags.diff(item.flags).length === 0) ? item : false
         });
   }
