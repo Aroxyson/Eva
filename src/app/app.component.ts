@@ -19,6 +19,7 @@ export class AppComponent implements OnInit{
   public checkedFlags: Array<Flags> = [];
   public filterFlags: Array<any> = [];
   public itemInfo:Item = {name:'', flags:[]};
+  
 
   constructor( private itemsService: ItemsService, private cdRef:ChangeDetectorRef, private Functions:Functions ) {}
   
@@ -28,7 +29,6 @@ export class AppComponent implements OnInit{
       .subscribe(
         (items) => {
           this.itemsLeft = items;
-          console.log('itemsLeft::',this.itemsLeft);
         }
       )
     this.itemsService
@@ -36,9 +36,9 @@ export class AppComponent implements OnInit{
     .subscribe(
       (items) => {
         this.itemsRight = items;
-        this.getAllFlags();
       }
     )
+    this.getAllFlags();
   }
 
   ngAfterViewChecked()
@@ -52,23 +52,12 @@ export class AppComponent implements OnInit{
 
   getAllFlags():void
   {
-    var maxLength:number = 0
-    var index:number = 0;
-
-    for(var i=0; i<this.itemsRight.length; i++)
-    {
-      if (this.itemsRight[i].flags.length>maxLength)
-      {
-        maxLength = this.itemsRight[i].flags.length;
-        index = i;
-      }
-    }
-
-    for (var itemMax of this.itemsRight[index].flags)
+    var flagsLength:number = Object.keys(Flags).length / 2;
+    for (var i=1; i<flagsLength; i++)
     {
       this.filterFlags.push(
           {
-            'name' : this.Functions.enumToString(itemMax),
+            'name' : Flags[i],
             'checked' : false
           }
       )
@@ -81,10 +70,10 @@ export class AppComponent implements OnInit{
   }
 
   addFlag( input: HTMLInputElement, flag: any ) {
-    var index = this.checkedFlags.indexOf(this.Functions.stringToEnum(flag.name));
+    var index = this.checkedFlags.indexOf(Flags.stringToEnum(flag.name));
     if  (input.checked === true) {
       if (index == -1) {
-          this.checkedFlags.push(this.Functions.stringToEnum(flag.name));
+          this.checkedFlags.push(Flags.stringToEnum(flag.name));
           flag.checked = true;
       }
     }

@@ -31,7 +31,7 @@
           <div class="checkbox" *ngFor="let flag of filterFlags" >
             <input  type="checkbox" id={{flag.name}} 
             (change)="addFlag($event.target, flag)">
-            <label for="{{flag.name}}" class="{{flag.name}}" [class.active]="flag.checked"></label>
+            <label for="{{flag.name}}" class="default-bg {{flag.name}}" [class.active]="flag.checked"></label>
           </div>
         </div>
 

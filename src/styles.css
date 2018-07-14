@@ -5,6 +5,10 @@ items-l, items-r  {
     position: relative;
     width: 24px;
     height: 24px;
+    background: url(images/unknown_flag24.png);
+}
+.default-bg {
+    background: url(images/unknown_flag24.png);
 }
 .list {
     overflow: auto;
@@ -14,6 +18,9 @@ items-l, items-r  {
     height: 100px;
     background: #c8d6da
 }
+/* .qui {
+    background: url(images/flower24.png);
+} */
 .flower {
     background: url(images/flower24.png);
 }

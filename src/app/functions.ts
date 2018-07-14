@@ -5,13 +5,13 @@ export function stringToEnum(flag: string)
         switch (flag)
         {
             case 'sun':
-                return Flags.SUN;
+                return Flags.sun;
             case 'flower': 
-                 return Flags.FLOWER;
+                 return Flags.flower;
             case 'heart': 
-              return Flags.HEART;
+              return Flags.heart;
             case 'flash': 
-              return Flags.FLASH;
+              return Flags.flash;
         }
     }
 

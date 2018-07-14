@@ -19,6 +19,8 @@ export class Functions {
                 return 'heart';
             case 4:
                 return 'flash';
+            case 5:
+                return 'qui';
         }
 
     }
@@ -28,13 +30,15 @@ export class Functions {
         switch (flag)
         {
             case 'sun':
-                return Flags.SUN;
+                return Flags.sun;
             case 'flower': 
-                 return Flags.FLOWER;
+                 return Flags.flower;
             case 'heart': 
-              return Flags.HEART;
+              return Flags.heart;
             case 'flash': 
-              return Flags.FLASH;
+              return Flags.flash;
+            case 'qui': 
+                return Flags.qui;
         }
     }
 }
