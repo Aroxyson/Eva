@@ -6,7 +6,6 @@
         <div class="col-12 d-flex p-2">Sort: 
           <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="sortItems('name')"><input [(ngModel)]="namesort">
         </div>
-
         <div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
             <items-l draggable [dragScope]="'items-r'" [dragData]="itemL" 
             class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemL == itemInfo"
@@ -21,7 +20,7 @@
       <div class="col-3 text-center info py-2">INFO
         <div class="text-left">Name : {{itemInfo.name}}</div>
         <div class="d-flex">Flags : 
-          <div *ngFor="let flag of itemInfo.flags" class="flags {{flag}}"></div>
+          <div *ngFor="let flag of itemInfo.flags" class="flags {{Functions.enumToString(flag)}}"></div>
         </div>
       </div>
 

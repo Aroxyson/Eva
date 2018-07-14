@@ -9,21 +9,44 @@ declare global {
     name: 'checkfilter',
     pure: false
 })
+
 export class CheckboxFilterPipe implements PipeTransform {
+  is_contain_all(item: any, checkedFlags: Array<any>): boolean
+  {
+    for (var i=0; i < checkedFlags.length; i++)
+    {
+      if (item.flags.indexOf(checkedFlags[i])<0)
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  is_contain_any(item: any, checkedFlags: Array<any>): boolean
+  {
+    for (var i=0; i < checkedFlags.length; i++)
+    {
+      if (item.flags.indexOf(checkedFlags[i])>=0)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
   transform(items: any, checkedFlags: Array<any>): any {
-    var start = new Date();
-
-    if (checkedFlags && Array.isArray(items)) {
-      if (!checkedFlags || checkedFlags.length === 0) { return items; }
-      
-      Array.prototype.diff = function(a) {
-        return this.filter(function(i) {return !(a.indexOf(i) > -1);});
-      };
-
-      return items.filter( item => {
-          //console.log('Process time: ' + (new Date() - start));
-          return (checkedFlags.diff(item.flags).length === 0) ? item : false
-        });
+    if (!checkedFlags || checkedFlags.length === 0) { return items; }
+    if (checkedFlags && Array.isArray(items)) { //checkedFlags != null
+     // var start = new Date();
+      return items.filter
+      ( 
+        item => 
+        {
+          //console.log(start - new Date());
+          return this.is_contain_all(item, checkedFlags)
+        }
+      );
   }
 }
 }

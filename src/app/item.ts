@@ -1,27 +1,19 @@
+import { Flags } from './flags';
+import { stringToEnum } from './functions';
+import { Functions } from './functions.service';
 export class Item {
 
     name: string = '';
-    flags: Array<string> = [];
+    flags: Array<Flags> = [];
+
     
-    // sun: string = '';
-    // heart: string = '';
-    // flash: string = '';
-    // flower: string = '';
-
-    constructor(values: Object = {}) {
-        Object.assign(this, values);
-
-        // if (this.flags.indexOf("sun") != -1) {
-        //   this.sun = require("../images/sun.png");
-        // }
-        // if (this.flags.indexOf("heart") != -1) {
-        //     this.heart = require("../images/heart.png");
-        // }
-        // if (this.flags.indexOf("flash") != -1) {
-        //     this.flash = require("../images/flash.png");
-        // }
-        // if (this.flags.indexOf("flower") != -1) {
-        //     this.flower = require("../images/flower.png");
-        // }
+    constructor(json_item?: any, private Functions?:Functions) 
+    {
+        if (!json_item) return;
+        this.name = json_item['name'];
+        for (var flag of json_item['flags'])
+        {
+            this.flags.push(Functions.stringToEnum(flag));
+        }
     }
 }

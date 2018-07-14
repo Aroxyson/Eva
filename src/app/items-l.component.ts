@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { Functions } from "./functions.service";
 
 @Component ({
     selector: "items-l",
@@ -6,7 +7,7 @@ import { Component, Input } from "@angular/core";
                 <div class="ml-auto d-flex">
                 <div 
                 *ngFor="let flag of itemL.flags"    
-                class="flags {{flag}}" 
+                class="flags {{functions.enumToString(flag)}}" 
                 ></div>
                 </div>`
 })
@@ -14,6 +15,7 @@ import { Component, Input } from "@angular/core";
 export class ItemsLComponent {
 
     @Input() itemL: any;
-    @Input() itemInfo: any;
+
+    constructor(public functions:Functions) {}
 
 }

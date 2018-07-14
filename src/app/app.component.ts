@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import {ItemsService} from './items.service';
 import { Item } from './item';
+import { Flags } from './flags';
+import { Functions } from './functions.service';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +16,11 @@ export class AppComponent implements OnInit{
   path: string[] = ['name'];
   order: number = -1;
   checkboxFlag:boolean;
-  public checkedFlags: Array<string>;
-  public filterFlags: Array<any>;
-  public options: any;
-  public itemInfo:Item;
+  public checkedFlags: Array<Flags> = [];
+  public filterFlags: Array<any> = [];
+  public itemInfo:Item = {name:'', flags:[]};
 
-  constructor( private itemsService: ItemsService ) {}
+  constructor( private itemsService: ItemsService, private cdRef:ChangeDetectorRef, private Functions:Functions ) {}
   
   public ngOnInit() {
     this.itemsService
@@ -35,36 +36,43 @@ export class AppComponent implements OnInit{
     .subscribe(
       (items) => {
         this.itemsRight = items;
-        console.log('itemsRight::',this.itemsRight);
+        this.getAllFlags();
       }
     )
-    this.itemInfo = new Item;
-    this.checkedFlags = [];
+  }
 
-    this.filterFlags = [
+  ngAfterViewChecked()
+  {
+    this.cdRef.detectChanges();
+  }
+
+  getItems() {
+    console.log('getInfo::',this.itemsRight);
+  }
+
+  getAllFlags():void
+  {
+    var maxLength:number = 0
+    var index:number = 0;
+
+    for(var i=0; i<this.itemsRight.length; i++)
+    {
+      if (this.itemsRight[i].flags.length>maxLength)
       {
-        name : "flower",
-        checked: false
-      },
-      {
-        name : "sun",
-        checked: false
-      },
-      {
-        name : "flash",
-        checked: false
-      },
-      {
-        name : "heart",
-        checked: false
+        maxLength = this.itemsRight[i].flags.length;
+        index = i;
       }
-    ];
+    }
 
-    this.options = {
-      removeOnSpill: false,
-      revertOnSpill: true,
-      copy: false
-    };
+    for (var itemMax of this.itemsRight[index].flags)
+    {
+      this.filterFlags.push(
+          {
+            'name' : this.Functions.enumToString(itemMax),
+            'checked' : false
+          }
+      )
+    }
   }
 
   setInfo( item: Item) {
@@ -73,10 +81,10 @@ export class AppComponent implements OnInit{
   }
 
   addFlag( input: HTMLInputElement, flag: any ) {
-    var index = this.checkedFlags.indexOf(flag.name);
+    var index = this.checkedFlags.indexOf(this.Functions.stringToEnum(flag.name));
     if  (input.checked === true) {
       if (index == -1) {
-          this.checkedFlags.push(flag.name);
+          this.checkedFlags.push(this.Functions.stringToEnum(flag.name));
           flag.checked = true;
       }
     }
@@ -86,6 +94,8 @@ export class AppComponent implements OnInit{
         flag.checked = false;
       }
     }
+    console.log("filterlags::",this.filterFlags);
+    console.log("checkedFlags::",this.checkedFlags);
   }
 
   onItemDrop(e: any, order: boolean) {
