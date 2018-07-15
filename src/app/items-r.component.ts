@@ -1,21 +1,22 @@
 import { Component, Input } from "@angular/core";
-import { Functions } from "./functions.service";
+import { FlagType } from "./flags";
+import { Item } from "./item";
 @Component ({
     selector: "items-r",
     template: ` <span>{{ itemR.name }}</span>
                 <div class="ml-auto d-flex">
                 <div 
                 *ngFor="let flag of itemR.flags"    
-                class="flags {{functions.enumToString(flag)}}" 
+                class="flags {{FlagType[flag]}}" 
                 ></div>
+                
                 </div>`
 })
 
 export class ItemsRComponent {
 
-    @Input() itemR: any;
-
-    constructor(public functions:Functions) {}
+    @Input() itemR: Item;
+    FlagType = FlagType;
 
 }
 

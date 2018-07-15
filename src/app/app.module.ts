@@ -11,7 +11,7 @@ import { NameSort } from './name-sort.pipe';
 import { ItemsRComponent } from './items-r.component';
 import { CheckboxFilterPipe } from './checkbox-filter.pipe'; 
 import { NgDragDropModule } from 'ng-drag-drop';
-import { Functions } from './functions.service';
+import { FilterFlags } from './filter-flags.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { Functions } from './functions.service';
     ItemsRComponent,
     NameFilter,
     NameSort,
-    CheckboxFilterPipe
+    CheckboxFilterPipe,
+    FilterFlags
   ],
   imports: [
     HttpModule,
@@ -30,7 +31,7 @@ import { Functions } from './functions.service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [RestApiService, Functions],
+  providers: [RestApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { Functions } from "./functions.service";
+import { FlagType } from "./flags";
+import { Item } from "./item";
 
 @Component ({
     selector: "items-l",
@@ -7,15 +8,16 @@ import { Functions } from "./functions.service";
                 <div class="ml-auto d-flex">
                 <div 
                 *ngFor="let flag of itemL.flags"    
-                class="flags {{functions.enumToString(flag)}}" 
+                class="flags {{FlagType[flag]}}" 
                 ></div>
                 </div>`
 })
 
 export class ItemsLComponent {
 
-    @Input() itemL: any;
+    @Input() itemL: Item;
+    FlagType = FlagType;
 
-    constructor(public functions:Functions) {}
+    constructor() {}
 
 }

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Item } from './item';
 
 @Pipe({
     name: 'sort',
@@ -7,16 +8,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class NameSort implements PipeTransform {
 
-    transform(items: any[], path: string[], order:number): any[] {
+    transform(items: Array<Item>, order:number): any[] {
 
-        return items.sort((a: any, b: any) => {
-
-            path.forEach(property => {
-                a = a[property];
-                b = b[property];
-            })
-    
-            return a > b ? order : order * (- 1);
+        return items.sort((a: Item, b: Item) => 
+        {
+            return a.name > b.name ? order : order * (- 1);
         })
     }
 }

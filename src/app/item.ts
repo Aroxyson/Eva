@@ -1,9 +1,9 @@
-import { Flags } from './flags';
-//import { stringToEnum } from './functions';
+import { FlagType, FlagsHelpers } from './flags';
+
 export class Item {
 
     name: string = '';
-    flags: Array<Flags> = [];
+    flags: Array<FlagType> = [];
 
     
     constructor(json_item?: any) 
@@ -12,7 +12,7 @@ export class Item {
         this.name = json_item['name'];
         for (var flag of json_item['flags'])
         {
-            this.flags.push(Flags.stringToEnum(flag));
+            this.flags.push(FlagsHelpers.stringToEnum(flag));
         }
     }
 }

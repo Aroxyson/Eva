@@ -22,7 +22,7 @@ export class RestApiService {
 
   constructor( private http: Http ) {}
 
-  public getAllItems(): Observable<Item[]> {
+  public receiveItems(): Observable<Item[]> {
     return this.http
       .get(TEST_URL) //возвращает Observable
       .map(response => {
