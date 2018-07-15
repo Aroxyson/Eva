@@ -3,6 +3,7 @@ import { Item } from './item';
 import { FlagType } from './flags';
 import { RestApiService } from './rest-api.service';
 import { SortOrder } from './orders';
+import { UtilsService } from './utils.service';
 
 @Component({
   selector: 'app-root',
@@ -22,23 +23,13 @@ export class AppComponent{
 
   FlagType = FlagType;
 
-  constructor(private cdRef:ChangeDetectorRef, private restApiService:RestApiService ) {}
+  constructor(private cdRef:ChangeDetectorRef, private utilsService:UtilsService ) {}
   
 
   ngAfterViewChecked()
   {
+    this.itemInfo = this.utilsService.receiveItemInfo();
     this.cdRef.detectChanges();
-  }
-
-  getCheckedFlags(checkedFlags: FlagType[])
-  {
-    this.checkedFlags = checkedFlags;
-    console.log('checkedFlags', this.checkedFlags);
-  }
-
-  setInfo( item: Item) {
-    console.log("item::",item);
-    this.itemInfo = item;
   }
 
   onItemDrop(e: any, order: boolean) { //enum DragDirection

@@ -12,6 +12,7 @@ import { UtilsService } from "./utils.service";
 export class ItemsRComponent {
 
     @Input() itemR: Item;
+    @Input() itemInfo:Item = new Item;
     FlagType = FlagType;
     itemsRight: Item[];
 

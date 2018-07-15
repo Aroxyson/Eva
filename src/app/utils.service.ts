@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { FlagType } from "./flags";
+import { Item } from "./item";
 
 @Injectable
     ({
@@ -9,6 +10,7 @@ import { FlagType } from "./flags";
 export class UtilsService {
 
     checkedFlags: FlagType[] = [];
+    itemInfo: Item = new Item;
     sendCheckedFlags(checkedFlags: FlagType[])
     {
         this.checkedFlags = checkedFlags;
@@ -18,5 +20,15 @@ export class UtilsService {
     {
         console.log('UtilsService::',this.checkedFlags);
         return this.checkedFlags;
+    }
+    sendItemInfo(item: Item) 
+    {
+        this.itemInfo = item;
+    }
+
+    receiveItemInfo(): Item
+    {
+        console.log('receiveItemInfo::',this.itemInfo);
+        return this.itemInfo;
     }
 }

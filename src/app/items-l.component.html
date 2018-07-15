@@ -4,7 +4,7 @@
     [dragData]="itemL" 
     [class.border-danger]="itemL == itemInfo"
     *ngFor="let itemL of itemsLeft | filter : namesort | sort : sortOrder"
-    (click) = "setInfo(itemL)">
+    (click) = "utilsService.sendItemInfo(itemL)">
         <span>{{ itemL.name }}</span>
         <div class="ml-auto d-flex">
             <div 

@@ -6,7 +6,7 @@
         <div class="col-12 d-flex p-2">Sort: 
           <input [(ngModel)]="cbSortOrder" type="checkbox" (change)="invertSortOrder()"><input [(ngModel)]="namesort">
         </div>
-        <items-l [namesort]="namesort" [sortOrder]="sortOrder"></items-l>
+        <items-l [namesort]="namesort" [sortOrder]="sortOrder" [itemInfo]="itemInfo"></items-l>
       </div>
 
       <div class="col-3 text-center info py-2">INFO
@@ -22,7 +22,7 @@
             <span>Filter: </span>{{checkedFlags}}
             <filter-flags class="col-12 d-flex" (checkedFlagsOut)="getCheckedFlags($event)"></filter-flags>
         </div>
-        <items-r></items-r>
+        <items-r [itemInfo]="itemInfo"></items-r>
 
       </div>
 
