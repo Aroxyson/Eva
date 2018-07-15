@@ -1,0 +1,16 @@
+<div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
+    <div draggable class="bg-success col-12 mb-1 mt-1 border d-flex" 
+    [dragScope]="'items-r'" 
+    [dragData]="itemL" 
+    [class.border-danger]="itemL == itemInfo"
+    *ngFor="let itemL of itemsLeft | filter : namesort | sort : sortOrder"
+    (click) = "setInfo(itemL)">
+        <span>{{ itemL.name }}</span>
+        <div class="ml-auto d-flex">
+            <div 
+            *ngFor="let flag of itemL.flags"    
+            class="flags {{FlagType[flag]}}" 
+            ></div>
+        </div>
+    </div>
+</div>

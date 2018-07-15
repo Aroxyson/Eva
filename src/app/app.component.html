@@ -6,14 +6,15 @@
         <div class="col-12 d-flex p-2">Sort: 
           <input [(ngModel)]="cbSortOrder" type="checkbox" (change)="invertSortOrder()"><input [(ngModel)]="namesort">
         </div>
-        <div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
+        <!-- <div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
             <items-l draggable [dragScope]="'items-r'" [dragData]="itemL" 
             class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemL == itemInfo"
             *ngFor="let itemL of itemsLeft | filter : namesort | sort : sortOrder"
             [itemL] = "itemL"
             (click) = "setInfo(itemL)"
             ></items-l>
-        </div>
+        </div> -->
+        <items-l [namesort]="namesort" [sortOrder]="sortOrder"></items-l>
 
       </div>
 

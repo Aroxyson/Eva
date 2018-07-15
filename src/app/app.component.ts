@@ -31,13 +31,6 @@ export class AppComponent implements OnInit{
   
   public ngOnInit() {
     this.restApiService
-      .receiveItems()
-      .subscribe(
-        (items) => {
-          this.itemsLeft = items;
-        }
-      )
-    this.restApiService
     .receiveItems()
     .subscribe(
       (items) => {
