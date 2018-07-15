@@ -1,32 +1,34 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter, OnInit } from "@angular/core";
 import { FlagsHelpers, FlagType } from "./flags";
+import { UtilsService } from "./utils.service";
 
 @Component ({
     selector: "filter-flags",
     template: `<div class="checkbox" *ngFor="let flag of filterFlags">
                <input  type="checkbox" id={{flag.name}} 
-               (change)="addToCheckedFlags($event.target, flag);sendCheckedFlags()">
+               (change)="addToCheckedFlags($event.target, flag)">
                <label for="{{flag.name}}" class="default-bg {{flag.name}}" [class.active]="flag.checked"></label>
                </div>`
 })
 
-export class FilterFlags {
-
+export class FilterFlags implements OnInit{
     
-    public filterFlags: Array<any> = [];
-    @Output() checkedFlagsOut:EventEmitter<FlagType[]> = new EventEmitter<FlagType[]>();
+    filterFlags: Array<any> = [];
     checkedFlags: FlagType[] = [];
 
+    constructor(private utilsService:UtilsService){}
 
-    ngOnInit(){
+    public ngOnInit()
+    {
         this.initFilterFlags();
     }
 
-    sendCheckedFlags()
-    {
-        this.checkedFlagsOut.emit(this.checkedFlags);
-        console.log(' this.checkedFlagsOut=', this.checkedFlagsOut);
-    }
+    
+    // sendCheckedFlags()
+    // {
+    //     this.checkedFlagsOut.emit(this.checkedFlags);
+    //     console.log(' this.checkedFlagsOut=', this.checkedFlagsOut);
+    // }
 
     initFilterFlags():void
     {
@@ -41,15 +43,7 @@ export class FilterFlags {
             }
         )
       }
-    // for (var flag in FlagType)
-    // {
-    //     this.filterFlags.push(
-    //     {
-    //         'name' : flag,
-    //         'checked' : false
-    //     }
-    //     )
-    // }
+
       console.log('initFilterFlags::',this.filterFlags);
     }
 
@@ -67,7 +61,8 @@ export class FilterFlags {
             flag.checked = false;
           }
         }
+        this.utilsService.sendCheckedFlags(this.checkedFlags);
         console.log("filterlags::",this.filterFlags);
-        console.log("checkedFlags::",this.checkedFlags);
+        console.log("checkedFlags::",this.utilsService.receiveCheckedFlags());
       }
 }

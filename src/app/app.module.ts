@@ -12,6 +12,7 @@ import { ItemsRComponent } from './items-r.component';
 import { FilterByFlags } from './filterByFlags.pipe'; 
 import { NgDragDropModule } from 'ng-drag-drop';
 import { FilterFlags } from './filter-flags.component';
+import { UtilsService } from './utils.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { FilterFlags } from './filter-flags.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [RestApiService],
+  providers: [RestApiService, UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

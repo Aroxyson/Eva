@@ -1,16 +1,12 @@
 import { PipeTransform, Pipe } from "@angular/core";
 
-declare global {
-  interface Array<T> {
-    diff(array: Array<T>);
-  }
-}
 @Pipe({
     name: 'checkfilter',
     pure: false
 })
 
 export class FilterByFlags implements PipeTransform {
+    static checkedFlags: any;
   is_contain_all(item: any, checkedFlags: Array<any>): boolean
   {
     for (var i=0; i < checkedFlags.length; i++)

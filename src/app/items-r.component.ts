@@ -1,23 +1,34 @@
 import { Component, Input } from "@angular/core";
 import { FlagType } from "./flags";
 import { Item } from "./item";
+import { RestApiService } from "./rest-api.service";
+import { UtilsService } from "./utils.service";
 
 @Component ({
     selector: "items-r",
-    template: ` <span>{{ itemR.name }}</span>
-                <div class="ml-auto d-flex">
-                <div 
-                *ngFor="let flag of itemR.flags"    
-                class="flags {{FlagType[flag]}}" 
-                ></div>
-                
-                </div>`
+    templateUrl: './items-r.component.html'
 })
 
 export class ItemsRComponent {
 
     @Input() itemR: Item;
     FlagType = FlagType;
+    itemsRight: Item[];
+
+    constructor(private restApiService:RestApiService, private utilsService:UtilsService) {}
+
+    public ngOnInit()
+    {
+        this.restApiService
+          .receiveItems()
+          .subscribe
+          (
+            (items) => 
+            {
+              this.itemsRight = items;
+            }
+          )
+    }
 
 }
 

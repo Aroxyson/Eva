@@ -6,16 +6,7 @@
         <div class="col-12 d-flex p-2">Sort: 
           <input [(ngModel)]="cbSortOrder" type="checkbox" (change)="invertSortOrder()"><input [(ngModel)]="namesort">
         </div>
-        <!-- <div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
-            <items-l draggable [dragScope]="'items-r'" [dragData]="itemL" 
-            class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemL == itemInfo"
-            *ngFor="let itemL of itemsLeft | filter : namesort | sort : sortOrder"
-            [itemL] = "itemL"
-            (click) = "setInfo(itemL)"
-            ></items-l>
-        </div> -->
         <items-l [namesort]="namesort" [sortOrder]="sortOrder"></items-l>
-
       </div>
 
       <div class="col-3 text-center info py-2">INFO
@@ -31,15 +22,7 @@
             <span>Filter: </span>{{checkedFlags}}
             <filter-flags class="col-12 d-flex" (checkedFlagsOut)="getCheckedFlags($event)"></filter-flags>
         </div>
-
-        <div droppable (onDrop)="onItemDrop($event, true)" [dropScope]="'items-r'" class="list">
-            <items-r draggable [dragData]="itemR" [dragScope]="'items-l'"  
-            class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemR == itemInfo"
-            *ngFor="let itemR of itemsRight | checkfilter: checkedFlags" 
-            [itemR] = "itemR"
-            (click) = "setInfo(itemR)"
-            ></items-r>
-        </div>
+        <items-r></items-r>
 
       </div>
 

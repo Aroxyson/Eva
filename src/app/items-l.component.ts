@@ -19,13 +19,16 @@ export class ItemsLComponent {
 
     constructor(private restApiService:RestApiService ) {}
 
-    public ngOnInit() {
+    public ngOnInit()
+    {
         this.restApiService
           .receiveItems()
-          .subscribe(
-            (items) => {
+          .subscribe
+          (
+            (items) => 
+            {
               this.itemsLeft = items;
             }
           )
-        }
+    }
 }

@@ -10,15 +10,10 @@ import { SortOrder } from './orders';
   styleUrls: ['./app.component.css'],
   providers: [RestApiService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
   @Input() checkedFlagsOut:FlagType[] = [];
-  
 
-  itemsLeft : Item[] = [];
-  itemsRight : Item[] = [];
-  
-  //sortOrder: number = -1;//переделать в enum
   sortOrder: SortOrder = SortOrder.reverse;
   cbSortOrder:boolean;
 
@@ -29,15 +24,6 @@ export class AppComponent implements OnInit{
 
   constructor(private cdRef:ChangeDetectorRef, private restApiService:RestApiService ) {}
   
-  public ngOnInit() {
-    this.restApiService
-    .receiveItems()
-    .subscribe(
-      (items) => {
-        this.itemsRight = items;
-      }
-    )
-  }
 
   ngAfterViewChecked()
   {
@@ -48,9 +34,6 @@ export class AppComponent implements OnInit{
   {
     this.checkedFlags = checkedFlags;
     console.log('checkedFlags', this.checkedFlags);
-  }
-  getItems() {
-    console.log('getInfo::',this.itemsRight);
   }
 
   setInfo( item: Item) {

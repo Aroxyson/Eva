@@ -1,0 +1,16 @@
+<div  droppable (onDrop)="onItemDrop($event, true)" [dropScope]="'items-r'" class="list">
+        <div draggable class="bg-success col-12 mb-1 mt-1 border d-flex"
+        [dragScope]="'items-l'"
+        [dragData]="itemR"
+         [class.border-danger]="itemR == itemInfo"
+        *ngFor="let itemR of itemsRight | checkfilter: utilsService.receiveCheckedFlags()" 
+        (click) = "setInfo(itemR)">
+            <span>{{ itemR.name }}</span>
+            <div class="ml-auto d-flex">
+                <div 
+                *ngFor="let flag of itemR.flags"    
+                class="flags {{FlagType[flag]}}" 
+                ></div>
+            </div>
+        </div>
+    </div>
