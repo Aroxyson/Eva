@@ -1,11 +1,11 @@
-import { Component, Output } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { FlagsHelpers, FlagType } from "./flags";
 
 @Component ({
     selector: "filter-flags",
     template: `<div class="checkbox" *ngFor="let flag of filterFlags">
                <input  type="checkbox" id={{flag.name}} 
-               (change)="addToCheckedFlags($event.target, flag)">
+               (change)="addToCheckedFlags($event.target, flag);sendCheckedFlags()">
                <label for="{{flag.name}}" class="default-bg {{flag.name}}" [class.active]="flag.checked"></label>
                </div>`
 })
@@ -14,12 +14,18 @@ export class FilterFlags {
 
     
     public filterFlags: Array<any> = [];
-    @Output() checkedFlags: Array<FlagType> = [];
+    @Output() checkedFlagsOut:EventEmitter<FlagType[]> = new EventEmitter<FlagType[]>();
+    checkedFlags: FlagType[] = [];
 
-    constructor(){};
-    
+
     ngOnInit(){
         this.initFilterFlags();
+    }
+
+    sendCheckedFlags()
+    {
+        this.checkedFlagsOut.emit(this.checkedFlags);
+        console.log(' this.checkedFlagsOut=', this.checkedFlagsOut);
     }
 
     initFilterFlags():void

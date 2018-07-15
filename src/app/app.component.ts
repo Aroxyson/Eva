@@ -12,7 +12,8 @@ import { SortOrder } from './orders';
 })
 export class AppComponent implements OnInit{
 
-  @Input() checkedFlags:Array<FlagType> = [];
+  @Input() checkedFlagsOut:FlagType[] = [];
+  
 
   itemsLeft : Item[] = [];
   itemsRight : Item[] = [];
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit{
   cbSortOrder:boolean;
 
   itemInfo:Item = {name:'', flags:[]};
+  checkedFlags: FlagType[] = [];
 
   FlagType = FlagType;
 
@@ -49,6 +51,11 @@ export class AppComponent implements OnInit{
     this.cdRef.detectChanges();
   }
 
+  getCheckedFlags(checkedFlags: FlagType[])
+  {
+    this.checkedFlags = checkedFlags;
+    console.log('checkedFlags', this.checkedFlags);
+  }
   getItems() {
     console.log('getInfo::',this.itemsRight);
   }
@@ -78,6 +85,7 @@ export class AppComponent implements OnInit{
       this.sortOrder = SortOrder.straight;
     else
       this.sortOrder = SortOrder.reverse;
+      console.log(this.cbSortOrder);
   }
 
 }

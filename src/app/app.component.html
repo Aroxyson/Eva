@@ -28,7 +28,7 @@
         
         <div class="col-12 d-flex p-2">
             <span>Filter: </span>{{checkedFlags}}
-            <filter-flags class="col-12 d-flex" ></filter-flags>
+            <filter-flags class="col-12 d-flex" (checkedFlagsOut)="getCheckedFlags($event)"></filter-flags>
         </div>
 
         <div droppable (onDrop)="onItemDrop($event, true)" [dropScope]="'items-r'" class="list">
