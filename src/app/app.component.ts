@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Item } from './item';
-import { FlagType, FlagsHelpers } from './flags';
-
+import { FlagType } from './flags';
 import { RestApiService } from './rest-api.service';
+import { SortOrder } from './orders';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +14,16 @@ export class AppComponent implements OnInit{
 
   @Input() checkedFlags:Array<FlagType> = [];
 
-  public itemsLeft : Item[] = [];
-  public itemsRight : Item[] = [];
-
-  sortOrder: number = -1;
-  checkboxFlag:boolean;
-  public itemInfo:Item = {name:'', flags:[]};
-
+  itemsLeft : Item[] = [];
+  itemsRight : Item[] = [];
   
+  //sortOrder: number = -1;//переделать в enum
+  sortOrder: SortOrder = SortOrder.reverse;
+  cbSortOrder:boolean;
+
+  itemInfo:Item = {name:'', flags:[]};
+
+  FlagType = FlagType;
 
   constructor(private cdRef:ChangeDetectorRef, private restApiService:RestApiService ) {}
   
@@ -31,7 +33,6 @@ export class AppComponent implements OnInit{
       .subscribe(
         (items) => {
           this.itemsLeft = items;
-          console.log(typeof(this.itemsLeft[1].flags[1]));
         }
       )
     this.restApiService
@@ -57,29 +58,26 @@ export class AppComponent implements OnInit{
     this.itemInfo = item;
   }
 
-  
-
-  onItemDrop(e: any, order: boolean) {
-    var indexL = this.itemsLeft.indexOf(e.dragData);
-    var indexR = this.itemsRight.indexOf(e.dragData);
+  onItemDrop(e: any, order: boolean) { //enum DragDirection
     if (order) {
       //Слева направо
+      var indexL = this.itemsLeft.indexOf(e.dragData);
       this.itemsRight.push(e.dragData);
       this.itemsLeft.splice(indexL,1);
     }
     else {
      //Справа налево
+      var indexR = this.itemsRight.indexOf(e.dragData);
       this.itemsLeft.push(e.dragData);
       this.itemsRight.splice(indexR,1);
     }
   }
 
-  setSortOrder(prop: string) {
-    if (this.checkboxFlag == true)
-      this.sortOrder = 1;
+  invertSortOrder() {
+    if (this.cbSortOrder == true)
+      this.sortOrder = SortOrder.straight;
     else
-      this.sortOrder = -1;
-    return false;
+      this.sortOrder = SortOrder.reverse;
   }
 
 }

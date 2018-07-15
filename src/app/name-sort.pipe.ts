@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Item } from './item';
+import { SortOrder } from './orders';
 
 @Pipe({
     name: 'sort',
@@ -8,11 +9,28 @@ import { Item } from './item';
 
 export class NameSort implements PipeTransform {
 
-    transform(items: Array<Item>, order:number): any[] {
+    transform(items: Array<Item>, order:SortOrder): Item[] {
 
-        return items.sort((a: Item, b: Item) => 
+        var comparator;
+        var directCompareByName = function(a: Item, b: Item) 
         {
-            return a.name > b.name ? order : order * (- 1);
-        })
+            return a.name > b.name ? 1 : -1;
+        }
+
+        switch (order)
+        {
+            case SortOrder.straight:
+            comparator = directCompareByName;
+            break;
+            
+            case SortOrder.reverse:
+            comparator = function(a: Item, b: Item) 
+            {
+                return directCompareByName(a,b)*(-1);
+            };
+            break;
+        }
+        return items.sort(comparator);
+        
     }
 }

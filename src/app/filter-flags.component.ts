@@ -5,7 +5,7 @@ import { FlagsHelpers, FlagType } from "./flags";
     selector: "filter-flags",
     template: `<div class="checkbox" *ngFor="let flag of filterFlags">
                <input  type="checkbox" id={{flag.name}} 
-               (change)="addToFilterFlags($event.target, flag)">
+               (change)="addToCheckedFlags($event.target, flag)">
                <label for="{{flag.name}}" class="default-bg {{flag.name}}" [class.active]="flag.checked"></label>
                </div>`
 })
@@ -27,7 +27,8 @@ export class FilterFlags {
       var flagsLength:number = FlagsHelpers.getSize();
       for (var i=0; i<flagsLength; i++)
       { console.log('flagt',FlagType[i]);
-        this.filterFlags.push(
+        this.filterFlags.push
+        (
             {
               'name' : FlagType[i],
               'checked' : false
@@ -46,7 +47,7 @@ export class FilterFlags {
       console.log('initFilterFlags::',this.filterFlags);
     }
 
-    addToFilterFlags( input: HTMLInputElement, flag: any  ) {
+    addToCheckedFlags( input: HTMLInputElement, flag: any  ) {
         var index = this.checkedFlags.indexOf(FlagsHelpers.stringToEnum(flag.name));
         if  (input.checked === true) {
           if (index == -1) {

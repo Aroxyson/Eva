@@ -18,6 +18,4 @@ export class ItemsLComponent {
     @Input() itemL: Item;
     FlagType = FlagType;
 
-    constructor() {}
-
 }

@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { FlagType } from "./flags";
 import { Item } from "./item";
+
 @Component ({
     selector: "items-r",
     template: ` <span>{{ itemR.name }}</span>

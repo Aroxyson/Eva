@@ -10,7 +10,7 @@ declare global {
     pure: false
 })
 
-export class CheckboxFilterPipe implements PipeTransform {
+export class FilterByFlags implements PipeTransform {
   is_contain_all(item: any, checkedFlags: Array<any>): boolean
   {
     for (var i=0; i < checkedFlags.length; i++)

@@ -4,12 +4,12 @@
 
       <div class="col-3 mr-auto bg-info">
         <div class="col-12 d-flex p-2">Sort: 
-          <input [(ngModel)]="checkboxFlag" type="checkbox" (change)="setSortOrder('name')"><input [(ngModel)]="namesort">
+          <input [(ngModel)]="cbSortOrder" type="checkbox" (change)="invertSortOrder()"><input [(ngModel)]="namesort">
         </div>
         <div droppable [dropScope]="'items-l'" class="list" (onDrop)="onItemDrop($event, false)">
             <items-l draggable [dragScope]="'items-r'" [dragData]="itemL" 
             class="bg-success col-12 mb-1 mt-1 border d-flex" [class.border-danger]="itemL == itemInfo"
-            *ngFor="let itemL of itemsLeft | filter : namesort | sort : order"
+            *ngFor="let itemL of itemsLeft | filter : namesort | sort : sortOrder"
             [itemL] = "itemL"
             (click) = "setInfo(itemL)"
             ></items-l>

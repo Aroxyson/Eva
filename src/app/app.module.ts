@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NameFilter } from './name-filter.pipe';
 import { NameSort } from './name-sort.pipe';
 import { ItemsRComponent } from './items-r.component';
-import { CheckboxFilterPipe } from './checkbox-filter.pipe'; 
+import { FilterByFlags } from './filterByFlags.pipe'; 
 import { NgDragDropModule } from 'ng-drag-drop';
 import { FilterFlags } from './filter-flags.component';
 
@@ -20,7 +20,7 @@ import { FilterFlags } from './filter-flags.component';
     ItemsRComponent,
     NameFilter,
     NameSort,
-    CheckboxFilterPipe,
+    FilterByFlags,
     FilterFlags
   ],
   imports: [

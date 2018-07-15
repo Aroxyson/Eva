@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Item } from './item';
 
 @Pipe({
     name: 'filter',
@@ -7,14 +8,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class NameFilter implements PipeTransform {
 
-    transform(items: any[], searchText: string): any[] {
+    transform(items: Item[], searchText: string): Item[] {
         if(!items) return []; //если объект для сравнения не передан, вернуть пустой массив
         if(!searchText) return items; //если сравниваемая строка не передана, вернуть исходный объект
 
         searchText = searchText.toLowerCase();
         
-        return items.filter( it => {
-            return it['name'].toLowerCase().includes(searchText);
+        return items.filter( item => {
+            return item.name.toLowerCase().includes(searchText);
         });
        }
     }
