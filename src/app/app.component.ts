@@ -11,12 +11,12 @@ import { UtilsService } from './services/utils.service';
   styleUrls: ['./app.component.css'],
   providers: [RestApiService]
 })
-export class AppComponent{
-
+export class AppComponent
+{
   sortOrder: SortOrder = SortOrder.reverse;
   cbSortOrder:boolean;
 
-  itemInfo:Item = new Item('');
+  itemInfo:Item = new Item;
   FlagType = FlagType;
 
   constructor(private cdRef:ChangeDetectorRef, private utilsService:UtilsService ) {}

@@ -13,18 +13,19 @@ const limit = 100;
   providedIn: 'root'
 })
 
-export class RestApiService {
+export class RestApiService
+{
 
   counter:number = 0;
-  out: Array<Item> = [];
+  out: Item[] = [];
 
   constructor( private http: Http ) {}
 
   public receiveItems(): Observable<Item[]> {
     return this.http
-      .get(TEST_URL) //возвращает Observable
+      .get(TEST_URL)
       .map(response => {
-        const items = response.json();//парсит json ответ
+        const items = response.json();
         this.out = [];
         this.counter = 0;
         for(var key in items) {
@@ -35,7 +36,7 @@ export class RestApiService {
         }
         return this.out;
       })
-      .catch(this.handleError);//ловит ошибку
+      .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {

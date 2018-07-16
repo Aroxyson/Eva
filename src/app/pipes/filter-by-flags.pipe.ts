@@ -7,9 +7,9 @@ import { FlagType } from "../enums/flags";
     pure: false
 })
 
-export class FilterByFlags implements PipeTransform {
-
-  is_contain_all(item: Item, checkedFlags: FlagType[]): boolean
+export class FilterByFlags implements PipeTransform 
+{
+  isContainAll(item: Item, checkedFlags: FlagType[]): boolean
   {
     for (var i=0; i < checkedFlags.length; i++)
     {
@@ -21,7 +21,7 @@ export class FilterByFlags implements PipeTransform {
     return true;
   }
 
-  is_contain_any(item:Item, checkedFlags: FlagType[]): boolean
+  isContainAny(item:Item, checkedFlags: FlagType[]): boolean
   {
     for (var i=0; i < checkedFlags.length; i++)
     {
@@ -37,6 +37,6 @@ export class FilterByFlags implements PipeTransform {
   {
     if (!checkedFlags || checkedFlags.length === 0) { return items; }
     return items.filter
-      (item =>{return this.is_contain_all(item, checkedFlags)});
+      (item =>{return this.isContainAll(item, checkedFlags)});
   }
 }

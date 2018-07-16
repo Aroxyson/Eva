@@ -7,9 +7,11 @@ import { SortOrder } from '../enums/order';
     pure: false
 })
 
-export class NameSort implements PipeTransform {
+export class NameSort implements PipeTransform 
+{
 
-    transform(items: Array<Item>, order:SortOrder): Item[] {
+    transform(items: Array<Item>, order:SortOrder): Item[] 
+    {
 
         var comparator;
         var directCompareByName = function(a: Item, b: Item) 

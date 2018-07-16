@@ -10,7 +10,8 @@ import { ItemList } from "../enums/itemList";
     templateUrl: '../templates/items-l.component.html'
 })
 
-export class ItemsLComponent {
+export class ItemsLComponent
+{
 
     @Input() namesort:string;
     @Input() sortOrder:SortOrder;
@@ -20,7 +21,7 @@ export class ItemsLComponent {
     itemsLeft: Item[] = [];
     itemList: ItemList = ItemList.left;
 
-    constructor(private utilsService: UtilsService )
+    constructor(private utilsService: UtilsService)
     {
       this.utilsService.getItems(this.itemList).subscribe(items => { this.itemsLeft = items; });
     }

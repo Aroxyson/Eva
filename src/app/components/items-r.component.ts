@@ -9,7 +9,8 @@ import { ItemList } from "../enums/itemList";
     templateUrl: '../templates/items-r.component.html'
 })
 
-export class ItemsRComponent {
+export class ItemsRComponent
+{
 
     @Input() itemR: Item;
     @Input() itemInfo:Item = new Item;

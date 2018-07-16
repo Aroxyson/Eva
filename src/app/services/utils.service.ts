@@ -10,7 +10,8 @@ import { ItemList } from "../enums/itemList";
         providedIn: 'root'
     })
 
-export class UtilsService {
+export class UtilsService
+{
 
     checkedFlags: FlagType[] = [];
     itemInfo: Item = new Item;

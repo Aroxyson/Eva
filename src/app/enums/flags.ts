@@ -1,4 +1,5 @@
-export enum FlagType {
+export enum FlagType 
+{
     flower,
     sun,
     heart,

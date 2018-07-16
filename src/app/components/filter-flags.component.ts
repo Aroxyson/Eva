@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { UtilsService } from "../services/utils.service";
 import { FlagType, FlagsHelpers } from '../enums/flags';
 
@@ -11,7 +11,8 @@ import { FlagType, FlagsHelpers } from '../enums/flags';
                </div>`
 })
 
-export class FilterFlags implements OnInit{
+export class FilterFlags
+{
     
     filterFlags: Array<any> = [];
     checkedFlags: FlagType[] = [];
