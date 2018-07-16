@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { FlagType } from "./flags";
-import { Item } from "./item";
+import { FlagType } from "../enums/flags";
+import { Item } from "../item";
 import { Subject, Observable } from "rxjs";
-import { RestApiService } from "./rest-api.service";
-import { ItemList } from "./itemList";
+import { RestApiService } from "../services/rest-api.service";
+import { ItemList } from "../enums/itemList";
 
 @Injectable
     ({
@@ -56,11 +56,6 @@ export class UtilsService {
         }
     }
 
-    getItemsLeft()
-    {
-        return this.itemsLeft;
-    }
-
     sendCheckedFlags(checkedFlags: FlagType[])
     {
         this.checkedFlags = checkedFlags;
@@ -68,9 +63,9 @@ export class UtilsService {
 
     receiveCheckedFlags():FlagType[]
     {
-        //console.log('UtilsService::',this.checkedFlags);
         return this.checkedFlags;
     }
+    
     sendItemInfo(item: Item) 
     {
         this.itemInfo = item;
@@ -78,27 +73,31 @@ export class UtilsService {
 
     receiveItemInfo(): Item
     {
-        //console.log('receiveItemInfo::',this.itemInfo);
         return this.itemInfo;
     }
 
+    sendSubjects()
+    {
+        this.itemsLeftSubject.next(this.itemsLeft);
+        this.itemsRightSubject.next(this.itemsRight);
+    }
+
+
     onItemDrop(source: any, target: ItemList)
-    { //enum DragDirection
+    {
         switch (target)
         {
             case ItemList.right:    
                 var indexL = this.itemsLeft.indexOf(source.dragData);
                 this.itemsRight.push(source.dragData);
                 this.itemsLeft.splice(indexL,1);
-                console.log('DnD this.itemsRight', this.itemsRight);
-                console.log('DnD this.itemsLeft', this.itemsLeft);
+                this.sendSubjects();
                 break;
             case ItemList.left:
                 var indexR = this.itemsRight.indexOf(source.dragData);
                 this.itemsLeft.push(source.dragData);
                 this.itemsRight.splice(indexR,1);
-                console.log('DnD this.itemsRight', this.itemsRight);
-                console.log('DnD this.itemsLeft', this.itemsLeft);
+                this.sendSubjects();
                 break;
         }
     }

@@ -1,6 +1,6 @@
-import { Component, Output, EventEmitter, OnInit } from "@angular/core";
-import { FlagsHelpers, FlagType } from "./flags";
-import { UtilsService } from "./utils.service";
+import { Component, OnInit } from "@angular/core";
+import { UtilsService } from "../services/utils.service";
+import { FlagType, FlagsHelpers } from '../enums/flags';
 
 @Component ({
     selector: "filter-flags",
@@ -15,26 +15,20 @@ export class FilterFlags implements OnInit{
     
     filterFlags: Array<any> = [];
     checkedFlags: FlagType[] = [];
+    FlagsType = FlagType;
 
     constructor(private utilsService:UtilsService){}
 
-    public ngOnInit()
+    ngOnInit()
     {
         this.initFilterFlags();
     }
-
-    
-    // sendCheckedFlags()
-    // {
-    //     this.checkedFlagsOut.emit(this.checkedFlags);
-    //     console.log(' this.checkedFlagsOut=', this.checkedFlagsOut);
-    // }
 
     initFilterFlags():void
     {
       var flagsLength:number = FlagsHelpers.getSize();
       for (var i=0; i<flagsLength; i++)
-      { console.log('flagt',FlagType[i]);
+      {
         this.filterFlags.push
         (
             {
@@ -43,8 +37,6 @@ export class FilterFlags implements OnInit{
             }
         )
       }
-
-      console.log('initFilterFlags::',this.filterFlags);
     }
 
     addToCheckedFlags( input: HTMLInputElement, flag: any  ) {
@@ -62,7 +54,5 @@ export class FilterFlags implements OnInit{
           }
         }
         this.utilsService.sendCheckedFlags(this.checkedFlags);
-        console.log("filterlags::",this.filterFlags);
-        console.log("checkedFlags::",this.utilsService.receiveCheckedFlags());
       }
 }

@@ -1,9 +1,3 @@
-// export enum FlagType {
-//     flower = 'flower',
-//     sun = 'sun',
-//     heart = 'heart',
-//     flash = 'flash'
-// }
 export enum FlagType {
     flower,
     sun,

@@ -1,12 +1,12 @@
 import { Component, Input } from "@angular/core";
-import { FlagType } from "./flags";
-import { Item } from "./item";
-import { UtilsService } from "./utils.service";
-import { ItemList } from "./itemList";
+import { FlagType } from "../enums/flags";
+import { Item } from "../item";
+import { UtilsService } from "../services/utils.service";
+import { ItemList } from "../enums/itemList";
 
 @Component ({
     selector: "items-r",
-    templateUrl: './items-r.component.html'
+    templateUrl: '../templates/items-r.component.html'
 })
 
 export class ItemsRComponent {

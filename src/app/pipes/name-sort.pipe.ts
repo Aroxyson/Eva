@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Item } from './item';
-import { SortOrder } from './order';
+import { Item } from '../item';
+import { SortOrder } from '../enums/order';
 
 @Pipe({
     name: 'sort',

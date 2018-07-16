@@ -3,7 +3,7 @@
         [dragScope]="'items-l'"
         [dragData]="itemR"
          [class.border-danger]="itemR == itemInfo"
-        *ngFor="let itemR of itemsRight | checkfilter: utilsService.receiveCheckedFlags()" 
+        *ngFor="let itemR of itemsRight | flagFilter: utilsService.receiveCheckedFlags()" 
         (click) = "utilsService.sendItemInfo(itemR)">
             <span>{{ itemR.name }}</span>
             <div class="ml-auto d-flex">

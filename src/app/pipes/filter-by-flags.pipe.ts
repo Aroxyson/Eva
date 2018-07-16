@@ -1,13 +1,15 @@
 import { PipeTransform, Pipe } from "@angular/core";
+import { Item } from "../item";
+import { FlagType } from "../enums/flags";
 
 @Pipe({
-    name: 'checkfilter',
+    name: 'flagFilter',
     pure: false
 })
 
 export class FilterByFlags implements PipeTransform {
-    static checkedFlags: any;
-  is_contain_all(item: any, checkedFlags: Array<any>): boolean
+
+  is_contain_all(item: Item, checkedFlags: FlagType[]): boolean
   {
     for (var i=0; i < checkedFlags.length; i++)
     {
@@ -19,7 +21,7 @@ export class FilterByFlags implements PipeTransform {
     return true;
   }
 
-  is_contain_any(item: any, checkedFlags: Array<any>): boolean
+  is_contain_any(item:Item, checkedFlags: FlagType[]): boolean
   {
     for (var i=0; i < checkedFlags.length; i++)
     {
@@ -31,18 +33,10 @@ export class FilterByFlags implements PipeTransform {
     return false;
   }
 
-  transform(items: any, checkedFlags: Array<any>): any {
+  transform(items: Item[], checkedFlags: FlagType[]): Item[]
+  {
     if (!checkedFlags || checkedFlags.length === 0) { return items; }
-    if (checkedFlags && Array.isArray(items)) { //checkedFlags != null
-     // var start = new Date();
-      return items.filter
-      ( 
-        item => 
-        {
-          //console.log(start - new Date());
-          return this.is_contain_all(item, checkedFlags)
-        }
-      );
+    return items.filter
+      (item =>{return this.is_contain_all(item, checkedFlags)});
   }
-}
 }
