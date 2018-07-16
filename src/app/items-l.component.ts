@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectorRef } from "@angular/core";
 import { FlagType } from "./flags";
 import { Item } from "./item";
 import { SortOrder } from "./order";
@@ -20,14 +20,20 @@ export class ItemsLComponent {
     itemsLeft: Item[] = [];
     itemList: ItemList = ItemList.left;
 
-    constructor(private utilsService: UtilsService )
+    constructor(private cdRef:ChangeDetectorRef, private utilsService: UtilsService )
     {
-      this.utilsService.getItems(this.itemList).subscribe(items => { this.itemsLeft = items; });
+      //this.utilsService.getItems(this.itemList).subscribe(items => { this.itemsLeft = items; });
     }
 
     public ngOnInit()
     {
       this.utilsService.initItems(this.itemList);
+      //this.itemsLeft = this.utilsService.getItemsLeft();
     }
 
+    ngAfterViewChecked()
+    {
+      this.itemsLeft = this.utilsService.getItemsLeft();
+      this.cdRef.detectChanges();
+    }
 }

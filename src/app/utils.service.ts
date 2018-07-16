@@ -56,6 +56,11 @@ export class UtilsService {
         }
     }
 
+    getItemsLeft()
+    {
+        return this.itemsLeft;
+    }
+
     sendCheckedFlags(checkedFlags: FlagType[])
     {
         this.checkedFlags = checkedFlags;
@@ -85,11 +90,15 @@ export class UtilsService {
                 var indexL = this.itemsLeft.indexOf(source.dragData);
                 this.itemsRight.push(source.dragData);
                 this.itemsLeft.splice(indexL,1);
+                console.log('DnD this.itemsRight', this.itemsRight);
+                console.log('DnD this.itemsLeft', this.itemsLeft);
                 break;
             case ItemList.left:
                 var indexR = this.itemsRight.indexOf(source.dragData);
                 this.itemsLeft.push(source.dragData);
                 this.itemsRight.splice(indexR,1);
+                console.log('DnD this.itemsRight', this.itemsRight);
+                console.log('DnD this.itemsLeft', this.itemsLeft);
                 break;
         }
     }
