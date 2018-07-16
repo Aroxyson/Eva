@@ -1,8 +1,8 @@
 import { Component, Input } from "@angular/core";
 import { FlagType } from "./flags";
 import { Item } from "./item";
-import { RestApiService } from "./rest-api.service";
 import { UtilsService } from "./utils.service";
+import { ItemList } from "./itemList";
 
 @Component ({
     selector: "items-r",
@@ -13,22 +13,19 @@ export class ItemsRComponent {
 
     @Input() itemR: Item;
     @Input() itemInfo:Item = new Item;
+
     FlagType = FlagType;
     itemsRight: Item[];
+    itemList: ItemList = ItemList.right;
 
-    constructor(private restApiService:RestApiService, private utilsService:UtilsService) {}
+    constructor(private utilsService: UtilsService )
+    {
+      this.utilsService.getItems(this.itemList).subscribe(items => { this.itemsRight = items; });
+    }
 
     public ngOnInit()
     {
-        this.restApiService
-          .receiveItems()
-          .subscribe
-          (
-            (items) => 
-            {
-              this.itemsRight = items;
-            }
-          )
+      this.utilsService.initItems(this.itemList);
     }
 
 }

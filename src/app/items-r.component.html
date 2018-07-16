@@ -1,4 +1,4 @@
-<div  droppable (onDrop)="onItemDrop($event, true)" [dropScope]="'items-r'" class="list">
+<div  droppable (onDrop)="utilsService.onItemDrop($event, itemList)" [dropScope]="'items-r'" class="list">
         <div draggable class="bg-success col-12 mb-1 mt-1 border d-flex"
         [dragScope]="'items-l'"
         [dragData]="itemR"

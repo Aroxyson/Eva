@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Item } from './item';
-import { SortOrder } from './orders';
+import { SortOrder } from './order';
 
 @Pipe({
     name: 'sort',
