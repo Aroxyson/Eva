@@ -25,7 +25,7 @@ export class FilterFlags
         this.initFilterFlags();
     }
 
-    initFilterFlags():void
+    initFilterFlags()
     {
       var flagsLength:number = FlagsHelpers.getSize();
       for (var i=0; i<flagsLength; i++)

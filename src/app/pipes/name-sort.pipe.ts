@@ -10,7 +10,7 @@ import { SortOrder } from '../enums/order';
 export class NameSort implements PipeTransform 
 {
 
-    transform(items: Array<Item>, order:SortOrder): Item[] 
+    transform(items: Item[], order:SortOrder): Item[] 
     {
 
         var comparator;

@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Item } from '../item';
 
 @Pipe({
-    name: 'filter',
+    name: 'nameFilter',
     pure: false
 })
 

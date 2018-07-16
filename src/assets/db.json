@@ -186,5 +186,563 @@
       "heart",
       "flash"
     ]
+  },
+  {
+    "name": "potato",
+    "flags": [
+      "flower",
+      "flash",
+      "sun"
+    ]
+  },
+  {
+    "name": "carrot",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "pepper",
+    "flags": [
+      "heart",
+      "sun",
+      "flash",
+      "flower"
+    ]
+  },
+  {
+    "name": "cucumber",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "celery",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "radish",
+    "flags": [
+      "flower",
+      "flash",
+      "sun"
+    ]
+  },
+  {
+    "name": "onion",
+    "flags": [
+      "heart",
+      "sun"
+    ]
+  },
+  {
+    "name": "cabbage",
+    "flags": [
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "pumpkin",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "corn",
+    "flags": [
+      "heart",
+      "flower"
+    ]
+  },
+  {
+    "name": "turnip",
+    "flags": [
+      "flower"
+    ]
+  },
+  {
+    "name": "pomelo",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "asparagus",
+    "flags": [
+      "heart",
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "beet ",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "eggplant",
+    "flags": [
+      "sun"
+    ]
+  },
+  {
+    "name": "garlic",
+    "flags": [
+      "flower",
+      "sun"
+    ]
+  },
+  {
+    "name": "haricot",
+    "flags": [
+      "heart",
+      "sun",
+      "flash",
+      "flower"
+    ]
+  },
+  {
+    "name": "paprika",
+    "flags": [
+      "heart",
+      "flower"
+    ]
+  },
+  {
+    "name": "pea",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "pod",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "rice",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "gooseberry",
+    "flags": [
+      "heart",
+      "sun"
+    ]
+  },
+  {
+    "name": "persimmon",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "pomegranate",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "cake",
+    "flags": [
+      "flower",
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "cheese",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "butter",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "chocolate",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "cream",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "honey",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "candy",
+    "flags": [
+      "flower",
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "eggs",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "pie",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "ham",
+    "flags": [
+      "sun"
+    ]
+  },
+  {
+    "name": "salt",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "sugar",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "sweets",
+    "flags": [
+      "flower",
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "chicken",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "chop",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "lamb",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "pork",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "ribs",
+    "flags": [
+      "flower"
+    ]
+  },
+  {
+    "name": "turkey",
+    "flags": [
+      "heart",
+      "sun",
+      "flash",
+      "flower"
+    ]
+  },
+  {
+    "name": "cod",
+    "flags": [
+      "flower"
+    ]
+  },
+  {
+    "name": "crab",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "fish",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "hake",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "octopus",
+    "flags": [
+      "heart",
+      "sun"
+    ]
+  },
+  {
+    "name": "lobster",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "salmon",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "trout",
+    "flags": [
+      "flower",
+      "flash",
+      "sun"
+    ]
+  },
+  {
+    "name": "tuna",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "beans",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "mushroom",
+    "flags": [
+      "heart",
+      "sun",
+      "flash",
+      "flower"
+    ]
+  },
+  {
+    "name": "tomato",
+    "flags": [
+      "heart"
+    ]
+  },
+  {
+    "name": "nut",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "squid",
+    "flags": [
+      "flower",
+      "flash",
+      "sun"
+    ]
+  },
+  {
+    "name": "sausage",
+    "flags": [
+      "heart",
+      "sun"
+    ]
+  },
+  {
+    "name": "coffee",
+    "flags": [
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "noodle",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "milk",
+    "flags": [
+      "heart",
+      "flower"
+    ]
+  },
+  {
+    "name": "mussel",
+    "flags": [
+      "flower"
+    ]
+  },
+  {
+    "name": "salo",
+    "flags": [
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "beer",
+    "flags": [
+      "heart",
+      "flower",
+      "flash"
+    ]
+  },
+  {
+    "name": "prunes ",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "tea",
+    "flags": [
+      "sun"
+    ]
+  },
+  {
+    "name": "duck",
+    "flags": [
+      "flower",
+      "sun"
+    ]
+  },
+  {
+    "name": "vinegar",
+    "flags": [
+      "heart",
+      "sun",
+      "flash",
+      "flower"
+    ]
+  },
+  {
+    "name": "juice",
+    "flags": [
+      "heart",
+      "flower"
+    ]
+  },
+  {
+    "name": "veal",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "sushi",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "oyster",
+    "flags": [
+      "flash"
+    ]
+  },
+  {
+    "name": "macaroni",
+    "flags": [
+      "heart",
+      "sun"
+    ]
+  },
+  {
+    "name": "cereal",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "crab",
+    "flags": [
+      "heart",
+      "flash"
+    ]
+  },
+  {
+    "name": "marmalade",
+    "flags": [
+      "heart",
+      "sun"
+    ]
+  },
+  {
+    "name": "biscuit",
+    "flags": [
+      "heart",
+      "sun",
+      "flash"
+    ]
+  },
+  {
+    "name": "bread",
+    "flags": [
+      "heart",
+      "flash"
+    ]
   }
 ]

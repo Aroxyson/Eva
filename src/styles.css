@@ -18,9 +18,7 @@ items-l, items-r  {
     height: 100px;
     background: #c8d6da
 }
-/* .qui {
-    background: url(images/flower24.png);
-} */
+
 .flower {
     background: url(images/flower24.png);
 }
@@ -41,6 +39,7 @@ items-l, items-r  {
     height: 24px;
     filter: grayscale(100%);
     cursor: pointer;
+    margin: 0px;
 }
  .checkbox {
     position:relative;

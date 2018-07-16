@@ -88,7 +88,7 @@ export class UtilsService
     {
         switch (target)
         {
-            case ItemList.right:    
+            case ItemList.right:
                 var indexL = this.itemsLeft.indexOf(source.dragData);
                 this.itemsRight.push(source.dragData);
                 this.itemsLeft.splice(indexL,1);

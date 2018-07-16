@@ -15,24 +15,21 @@ const limit = 100;
 
 export class RestApiService
 {
-
-  counter:number = 0;
-  out: Item[] = [];
+  out: Item[];
 
   constructor( private http: Http ) {}
 
-  public receiveItems(): Observable<Item[]> {
+  public receiveItems(): Observable<Item[]>
+  {
     return this.http
       .get(TEST_URL)
-      .map(response => {
+      .map(response => 
+      {
         const items = response.json();
         this.out = [];
-        this.counter = 0;
-        for(var key in items) {
-          if (this.counter < limit) {
-            this.out.push(new Item(items[key]));
-            this.counter++;
-          }
+        for(var i=0; i<limit; i++)
+        {
+          this.out.push(new Item(items[i]));
         }
         return this.out;
       })
