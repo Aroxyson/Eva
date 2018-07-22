@@ -3,34 +3,27 @@ import { Item } from './item';
 import { FlagType } from './enums/flags';
 import { SortOrder } from './enums/order';
 import { UtilsService } from './services/utils.service';
+import { ItemList } from './enums/itemList';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent
-{
+export class AppComponent {
   sortOrder: SortOrder = SortOrder.reverse;
-  cbSortOrder:boolean;
 
-  itemInfo:Item = new Item;
+  itemInfo: Item = new Item;
   FlagType = FlagType;
+  ItemList = ItemList;
 
-  constructor(private cdRef:ChangeDetectorRef, private utilsService:UtilsService ) {}
+  constructor(private cdRef: ChangeDetectorRef, private utilsService: UtilsService ) {}
 
-  ngAfterViewChecked()
-  {
+  ngAfterViewChecked() {
     this.itemInfo = this.utilsService.receiveItemInfo();
     this.cdRef.detectChanges();
   }
 
-  invertSortOrder()
-  {
-    if (this.cbSortOrder == true)
-      this.sortOrder = SortOrder.straight;
-    else
-      this.sortOrder = SortOrder.reverse;
-  }
+
 
 }

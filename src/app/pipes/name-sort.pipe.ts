@@ -7,32 +7,27 @@ import { SortOrder } from '../enums/order';
     pure: false
 })
 
-export class NameSort implements PipeTransform 
-{
+export class NameSort implements PipeTransform {
 
-    transform(items: Item[], order:SortOrder): Item[] 
-    {
+    transform(items: Item[], order: SortOrder): Item[] {
 
-        var comparator;
-        var directCompareByName = function(a: Item, b: Item) 
-        {
+        let comparator;
+        const directCompareByName = function(a: Item, b: Item) {
             return a.name > b.name ? 1 : -1;
-        }
+        };
 
-        switch (order)
-        {
+        switch (order) {
             case SortOrder.straight:
             comparator = directCompareByName;
             break;
-            
+
             case SortOrder.reverse:
-            comparator = function(a: Item, b: Item) 
-            {
-                return directCompareByName(a,b)*(-1);
+            comparator = function(a: Item, b: Item) {
+                return directCompareByName(a, b) * (-1);
             };
             break;
         }
         return items.sort(comparator);
-        
+
     }
 }

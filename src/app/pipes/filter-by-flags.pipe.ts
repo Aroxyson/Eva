@@ -7,11 +7,11 @@ import { FlagType } from "../enums/flags";
     pure: false
 })
 
-export class FilterByFlags implements PipeTransform 
+export class FilterByFlags implements PipeTransform
 {
   isContainAll(item: Item, checkedFlags: FlagType[]): boolean
   {
-    for (var i=0; i < checkedFlags.length; i++)
+    for (let i=0; i < checkedFlags.length; i++)
     {
       if (item.flags.indexOf(checkedFlags[i])<0)
       {
@@ -23,7 +23,7 @@ export class FilterByFlags implements PipeTransform
 
   isContainAny(item:Item, checkedFlags: FlagType[]): boolean
   {
-    for (var i=0; i < checkedFlags.length; i++)
+    for (let i=0; i < checkedFlags.length; i++)
     {
       if (item.flags.indexOf(checkedFlags[i])>=0)
       {

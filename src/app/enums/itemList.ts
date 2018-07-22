@@ -1,5 +1,4 @@
-export enum ItemList
-{
+export enum ItemList {
     left,
     right
 }

@@ -4,22 +4,23 @@ import { Item } from "../item";
 import { UtilsService } from "../services/utils.service";
 import { ItemList } from "../enums/itemList";
 
-@Component ({
+@Component
+({
     selector: "items-r",
-    templateUrl: '../templates/items-r.component.html'
+    templateUrl: './items-r.component.html'
 })
 
 export class ItemsRComponent
 {
 
     @Input() itemR: Item;
-    @Input() itemInfo:Item = new Item;
+    @Input() itemInfo: Item = new Item;
 
     FlagType = FlagType;
     itemsRight: Item[];
     itemList: ItemList = ItemList.right;
 
-    constructor(private utilsService: UtilsService )
+    constructor(private utilsService: UtilsService)
     {
       this.utilsService.getItems(this.itemList).subscribe(items => { this.itemsRight = items; });
     }

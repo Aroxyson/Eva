@@ -23,11 +23,11 @@ export class RestApiService
   {
     return this.http
       .get(TEST_URL)
-      .map(response => 
+      .map(response =>
       {
         const items = response.json();
         this.out = [];
-        for(var i=0; i<limit; i++)
+        for(let i=0; i<limit; i++)
         {
           this.out.push(new Item(items[i]));
         }
