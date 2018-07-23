@@ -1,30 +1,33 @@
-<!--<input type="button" value="Items" (click)="getItems(itemsRight)">-->
-<div *ngIf = "itemList == ItemList.right">
-  <div  droppable (onDrop)="utilsService.onItemDrop($event, itemList)" [dropScope]="'items-r'" class="list">
+<div *ngIf = "itemList == ItemList.left">
+  <div droppable class="list" (onDrop)="utilsService.onItemDrop($event, itemList)"
+       [dropScope]="'items-l'">
     <div draggable class="bg-success col-12 mb-1 mt-1 border d-flex"
-         [dragScope]="'items-l'"
-         [dragData]="itemR"
-         [class.border-danger]="itemR == itemInfo"
-         *ngFor="let itemR of utilsService.sortItems(itemsRight, utilsService.getSortOrder())"
-         (click) = "utilsService.sendItemInfo(itemR)">
-      <span>{{ itemR.name }}</span>
+         [dragScope]="'items-r'"
+         [dragData]="itemL"
+         [class.border-danger]="itemL == itemInfo"
+         *ngFor="let itemL of utilsService.sortItems(utilsService.nameFilter(itemsLeft, nameToFilter), utilsService.getSortOrder())"
+         (click) = "utilsService.sendItemInfo(itemL)">
+      <span>{{ itemL.name }}</span>
       <div class="ml-auto d-flex">
         <div
-          *ngFor="let flag of itemR.flags"
+          *ngFor="let flag of itemL.flags"
           class="flags {{FlagType[flag]}}"
         ></div>
       </div>
     </div>
   </div>
 </div>
-<div *ngIf = "itemList == ItemList.left">
-  <div  droppable (onDrop)="utilsService.onItemDrop($event, itemList)" [dropScope]="'items-r'" class="list">
+<div *ngIf = "itemList == ItemList.right">
+  <div  droppable
+        (onDrop)="utilsService.onItemDrop($event, itemList)"
+        [dropScope]="'items-r'" class="list">
     <div draggable class="bg-success col-12 mb-1 mt-1 border d-flex"
          [dragScope]="'items-l'"
          [dragData]="itemR"
          [class.border-danger]="itemR == itemInfo"
-         *ngFor="let itemR of itemsRight"
-         (click) = "utilsService.sendItemInfo(itemR)">
+         (click) = "utilsService.sendItemInfo(itemR)"
+         (checkedFlagsOut)="getCheckedFlags($event)"
+         *ngFor="let itemR of utilsService.filterByFlag(itemsRight, checkedFlags)">
       <span>{{ itemR.name }}</span>
       <div class="ml-auto d-flex">
         <div

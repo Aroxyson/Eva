@@ -13,83 +13,128 @@ import {SortOrder} from '../enums/order';
 
 export class UtilsService {
 
-    checkedFlags: FlagType[] = [];
-    itemInfo: Item = new Item;
-    itemsLeft: Item[] = [];
-    itemsRight: Item[] = [];
+  checkedFlags: FlagType[] = [];
+  itemInfo: Item = new Item;
+  itemsLeft: Item[] = [];
+  itemsRight: Item[] = [];
 
-    itemsLeftSubject = new Subject<Item[]>();
-    itemsRightSubject = new Subject<Item[]>();
+  itemsLeftSubject = new Subject<Item[]>();
+  itemsRightSubject = new Subject<Item[]>();
 
-    constructor(private restApiService: RestApiService) {
-        this.getItems(ItemList.left).subscribe(items => { this.itemsLeft = items; });
-        this.getItems(ItemList.right).subscribe(items => { this.itemsRight = items; });
-    }
+  constructor(private restApiService: RestApiService) {
+      this.getItems(ItemList.left).subscribe(items => { this.itemsLeft = items; });
+      this.getItems(ItemList.right).subscribe(items => { this.itemsRight = items; });
+  }
 
-    initItems( itemList: ItemList) {
-        switch (itemList) {
-            case ItemList.left:
-                this.restApiService
-                .receiveItems()
-                .subscribe
-                ((items) => {this.itemsLeftSubject.next(items); });
-                break;
-            case ItemList.right:
-                this.restApiService
-                .receiveItems()
-                .subscribe
-                ((items) => {this.itemsRightSubject.next(items); });
-                break;
+  initItems( itemList: ItemList) {
+      switch (itemList) {
+          case ItemList.left:
+              this.restApiService
+              .receiveItems()
+              .subscribe
+              ((items) => {this.itemsLeftSubject.next(items); });
+              break;
+          case ItemList.right:
+              this.restApiService
+              .receiveItems()
+              .subscribe
+              ((items) => {this.itemsRightSubject.next(items); });
+              break;
+      }
+  }
+
+  getItems(itemList: ItemList): Observable<any> {
+      switch (itemList) {
+          case ItemList.left:
+              return this.itemsLeftSubject.asObservable();
+          case ItemList.right:
+              return this.itemsRightSubject.asObservable();
+      }
+  }
+
+  // sendCheckedFlags(checkedFlags: FlagType[]) {
+  //   this.checkedFlags = checkedFlags;
+  // }
+
+  receiveCheckedFlags(): FlagType[] {
+      return this.checkedFlags;
+  }
+
+  sendItemInfo(item: Item) {
+      this.itemInfo = item;
+  }
+
+  receiveItemInfo(): Item {
+      return this.itemInfo;
+  }
+
+  sendSubjects() {
+      this.itemsLeftSubject.next(this.itemsLeft);
+      this.itemsRightSubject.next(this.itemsRight);
+  }
+
+
+  onItemDrop(source: any, target: ItemList) {
+      switch (target) {
+          case ItemList.right:
+              const indexL = this.itemsLeft.indexOf(source.dragData);
+              this.itemsRight.push(source.dragData);
+              this.itemsLeft.splice(indexL, 1);
+              this.sendSubjects();
+              break;
+          case ItemList.left:
+              const indexR = this.itemsRight.indexOf(source.dragData);
+              this.itemsLeft.push(source.dragData);
+              this.itemsRight.splice(indexR, 1);
+              this.sendSubjects();
+              break;
+      }
+  }
+
+  filterByFlag(items: Item[], checkedFlags: FlagType[]): Item[] {
+    console.log(checkedFlags);
+    function isContainAll(item: Item, checkedFlags: FlagType[]): boolean {
+      for (let i = 0; i < checkedFlags.length; i++) {
+        if (item.flags.indexOf(checkedFlags[i]) < 0) {
+          return false;
         }
+      }
+      return true;
     }
 
-    getItems(itemList: ItemList): Observable<any> {
-        switch (itemList) {
-            case ItemList.left:
-                return this.itemsLeftSubject.asObservable();
-            case ItemList.right:
-                return this.itemsRightSubject.asObservable();
+    function isContainAny(item: Item, checkedFlags: FlagType[]): boolean {
+      for (let i = 0; i < checkedFlags.length; i++) {
+        if (item.flags.indexOf(checkedFlags[i]) >= 0) {
+          return true;
         }
+      }
+      return false;
     }
 
-    sendCheckedFlags(checkedFlags: FlagType[]) {
-        this.checkedFlags = checkedFlags;
+    if (!checkedFlags || checkedFlags.length === 0) {
+      return items;
+    }
+    return items.filter
+    (item => isContainAll(item, checkedFlags));
+  }
+
+  nameFilter(items: Item[], searchText: string): Item[] {
+   // let t = Date.now();
+    if (!searchText) {
+      return items;
     }
 
-    receiveCheckedFlags(): FlagType[] {
-        return this.checkedFlags;
+    if (!items) {
+      return [];
     }
 
-    sendItemInfo(item: Item) {
-        this.itemInfo = item;
-    }
+    searchText = searchText.toLowerCase();
 
-    receiveItemInfo(): Item {
-        return this.itemInfo;
-    }
-
-    sendSubjects() {
-        this.itemsLeftSubject.next(this.itemsLeft);
-        this.itemsRightSubject.next(this.itemsRight);
-    }
-
-
-    onItemDrop(source: any, target: ItemList) {
-        switch (target) {
-            case ItemList.right:
-                const indexL = this.itemsLeft.indexOf(source.dragData);
-                this.itemsRight.push(source.dragData);
-                this.itemsLeft.splice(indexL, 1);
-                this.sendSubjects();
-                break;
-            case ItemList.left:
-                const indexR = this.itemsRight.indexOf(source.dragData);
-                this.itemsLeft.push(source.dragData);
-                this.itemsRight.splice(indexR, 1);
-                this.sendSubjects();
-                break;
-        }
-    }
+    return items.filter( item => {
+    //  console.log("Process time ", Date.now()-t);
+      return item.name.toLowerCase().includes(searchText);
+    });
+  }
 
   sortOrder: SortOrder = SortOrder.reverse;
   sortItems(items: Item[], order: SortOrder): Item[] {

@@ -11,7 +11,7 @@ import { NameSort } from './pipes/name-sort.pipe';
 import { ItemsRComponent } from './components/items-r.component';
 import { FilterByFlags } from './pipes/filter-by-flags.pipe';
 import { NgDragDropModule } from 'ng-drag-drop';
-import { FilterFlags } from './components/filter-flags.component';
+import { FilterFlagsComponent } from './components/filter-flags.component';
 import { UtilsService } from './services/utils.service';
 import { ItemsComponent} from './components/items.component';
 
@@ -24,7 +24,7 @@ import { ItemsComponent} from './components/items.component';
     NameFilter,
     NameSort,
     FilterByFlags,
-    FilterFlags
+    FilterFlagsComponent
   ],
   imports: [
     HttpModule,

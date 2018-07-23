@@ -6,18 +6,22 @@ import { Item } from '../item';
     pure: false
 })
 
-export class NameFilter implements PipeTransform 
+export class NameFilter implements PipeTransform
 {
 
-    transform(items: Item[], searchText: string): Item[] 
+    transform(items: Item[], searchText: string): Item[]
     {
-        if(!items) return []; //если объект для сравнения не передан, вернуть пустой массив
-        if(!searchText) return items; //если сравниваемая строка не передана, вернуть исходный объект
+        let t = Date.now();
+        if(!items)
+          return [];
+        if(!searchText)
+          return items;
 
         searchText = searchText.toLowerCase();
-        
-        return items.filter( item => 
+
+        return items.filter( item =>
             {
+                console.log("Process time ", Date.now()-t);
                 return item.name.toLowerCase().includes(searchText);
             });
     }

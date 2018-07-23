@@ -16,6 +16,7 @@ export class AppComponent {
   itemInfo: Item = new Item;
   FlagType = FlagType;
   ItemList = ItemList;
+  checkedFlags: FlagType[];
 
   constructor(private cdRef: ChangeDetectorRef, private utilsService: UtilsService ) {}
 

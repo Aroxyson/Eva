@@ -13,6 +13,9 @@ import {UtilsService} from '../services/utils.service';
 
 export class ItemsComponent implements OnInit {
   @Input() itemList: ItemList;
+  @Input() nameToFilter: string;
+  @Input() itemInfo: Item;
+  @Input() checkedFlags: FlagType[];
 
   itemsLeft: Item[] = [];
   itemsRight: Item[] = [];
@@ -26,8 +29,8 @@ export class ItemsComponent implements OnInit {
    this.initItems(this.itemList);
   }
 
-  getItems(items: Item[]) {
-    console.log('getItems::', items);
+  getCheckedFlags(event) {
+    console.log(event);
   }
 
   initItems( itemList: ItemList) {

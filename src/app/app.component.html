@@ -5,10 +5,11 @@
         <div class="p-2">
           <span class="align-self-center">Sort:</span>
           <input [(ngModel)]="cbSortOrder" type="checkbox" (change)="utilsService.invertSortOrder(cbSortOrder)" class="align-self-center">
-          <input [(ngModel)]="namesort" placeholder="Name filter" class="col-9 ml-auto">
+          <input [(ngModel)]="nameToFilter" placeholder="Name filter" class="col-9 ml-auto">
         </div>
-        <items [itemList]="ItemList.right"></items>
-        <!--<items-l [namesort]="namesort" [sortOrder]="sortOrder" [itemInfo]="itemInfo"></items-l>-->
+        <items [itemList]="ItemList.left"
+               [nameToFilter]="nameToFilter"
+               [itemInfo]="itemInfo"></items>
       </div>
 
       <div class="col-3 text-center info py-2">INFO
@@ -23,10 +24,13 @@
 
       <div class="col-3 ml-auto bg-info">
         <div class="row p-2">
-            <span>Filter:{{checkedFlags}}</span>
-            <filter-flags class="d-flex" (checkedFlagsOut)="getCheckedFlags($event)"></filter-flags>
+            <span>Filter:</span>
+            <filter-flags class="d-flex"
+              (checkedFlagsOut)="checkedFlags=$event"></filter-flags>
         </div>
-        <items-r [itemInfo]="itemInfo"></items-r>
+        <items [itemList]="ItemList.right"
+               [itemInfo]="itemInfo"
+               [checkedFlags]="checkedFlags"></items>
       </div>
 
   </div>

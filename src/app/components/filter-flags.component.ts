@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { UtilsService } from '../services/utils.service';
 import { FlagType, FlagsHelpers } from '../enums/flags';
 
@@ -12,7 +12,9 @@ import { FlagType, FlagsHelpers } from '../enums/flags';
                </div>`
 })
 
-export class FilterFlags {
+export class FilterFlagsComponent implements OnInit{
+  @Output() checkedFlagsOut: EventEmitter<FlagType[]> = new EventEmitter<FlagType[]>();
+
   filterFlags: Array<any> = [];
   checkedFlags: FlagType[] = [];
   FlagsType = FlagType;
@@ -21,6 +23,11 @@ export class FilterFlags {
 
   ngOnInit() {
       this.initFilterFlags();
+  }
+
+  sendCheckedFlags() {
+    this.checkedFlagsOut.emit(this.checkedFlags);
+    console.log(' this.checkedFlagsOut=', this.checkedFlagsOut);
   }
 
   initFilterFlags() {
@@ -49,6 +56,6 @@ export class FilterFlags {
           flag.checked = false;
         }
       }
-      this.utilsService.sendCheckedFlags(this.checkedFlags);
+      this.sendCheckedFlags();
     }
 }
