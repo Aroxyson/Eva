@@ -1,9 +1,12 @@
 <div *ngIf = "itemList == ItemList.left">
-  <div droppable class="list" (onDrop)="utilsService.onItemDrop($event, itemList)"
-       [dropScope]="'items-l'">
-    <div draggable class="bg-success col-12 mb-1 mt-1 border d-flex"
-         [dragScope]="'items-r'"
-         [dragData]="itemL"
+  <input type="button" value="Items" (click)="getItems(itemsLeft)">
+  <div class="list"
+       (drop)="onDrop($event, itemList)"
+       (dragover)="allowDrop($event)">
+    <div class="bg-success col-12 mb-1 mt-1 border d-flex"
+         draggable="true"
+         (dragstart)="onDragStart($event, itemL)"
+         (dragend) = "deleteItem(index)"
          [class.border-danger]="itemL == itemInfo"
          *ngFor="let itemL of utilsService.sortItems(utilsService.nameFilter(itemsLeft, nameToFilter), utilsService.getSortOrder())"
          (click) = "utilsService.sendItemInfo(itemL)">
@@ -11,22 +14,23 @@
       <div class="ml-auto d-flex">
         <div
           *ngFor="let flag of itemL.flags"
-          class="flags {{FlagType[flag]}}"
-        ></div>
+          class="flags {{FlagType[flag]}}">
+        </div>
       </div>
     </div>
   </div>
 </div>
 <div *ngIf = "itemList == ItemList.right">
-  <div  droppable
-        (onDrop)="utilsService.onItemDrop($event, itemList)"
-        [dropScope]="'items-r'" class="list">
-    <div draggable class="bg-success col-12 mb-1 mt-1 border d-flex"
-         [dragScope]="'items-l'"
-         [dragData]="itemR"
+  <input type="button" value="Items" (click)="getItems(itemsRight)">
+  <div class="list"
+       (drop)="onDrop($event, itemList)"
+       (dragover)="allowDrop($event)">
+    <div class="bg-success col-12 mb-1 mt-1 border d-flex"
+         draggable="true"
+         (dragstart)="onDragStart($event, itemR)"
+         (dragend) = "deleteItem(index)"
          [class.border-danger]="itemR == itemInfo"
          (click) = "utilsService.sendItemInfo(itemR)"
-         (checkedFlagsOut)="getCheckedFlags($event)"
          *ngFor="let itemR of utilsService.filterByFlag(itemsRight, checkedFlags)">
       <span>{{ itemR.name }}</span>
       <div class="ml-auto d-flex">

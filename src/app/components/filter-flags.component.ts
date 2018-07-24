@@ -12,7 +12,7 @@ import { FlagType, FlagsHelpers } from '../enums/flags';
                </div>`
 })
 
-export class FilterFlagsComponent implements OnInit{
+export class FilterFlagsComponent implements OnInit {
   @Output() checkedFlagsOut: EventEmitter<FlagType[]> = new EventEmitter<FlagType[]>();
 
   filterFlags: Array<any> = [];
@@ -27,27 +27,35 @@ export class FilterFlagsComponent implements OnInit{
 
   sendCheckedFlags() {
     this.checkedFlagsOut.emit(this.checkedFlags);
-    console.log(' this.checkedFlagsOut=', this.checkedFlagsOut);
   }
 
   initFilterFlags() {
     const flagsLength: number = FlagsHelpers.getSize();
-    for (let i = 0; i < flagsLength; i++) {
+    // for (let i = 0; i < flagsLength; i++) {
+    //   this.filterFlags.push
+    //   (
+    //       {
+    //         'name': FlagType[i],
+    //         'checked': false
+    //       }
+    //   );
+    // }
+    for (let value in FlagType) {
       this.filterFlags.push
       (
-          {
-            'name': FlagType[i],
-            'checked': false
-          }
+        {
+          'name': value,
+          'checked': false
+        }
       );
     }
   }
 
   addToCheckedFlags(input: HTMLInputElement, flag: any) {
-      const index = this.checkedFlags.indexOf(FlagsHelpers.stringToEnum(flag.name));
+      const index = this.checkedFlags.indexOf(flag.name);
       if (input.checked === true) {
         if (index == -1) {
-            this.checkedFlags.push(FlagsHelpers.stringToEnum(flag.name));
+            this.checkedFlags.push(flag.name);
             flag.checked = true;
         }
       } else {
@@ -56,6 +64,7 @@ export class FilterFlagsComponent implements OnInit{
           flag.checked = false;
         }
       }
+      console.log(this.checkedFlags);
       this.sendCheckedFlags();
     }
 }
