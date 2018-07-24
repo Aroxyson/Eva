@@ -6,9 +6,9 @@
     <div class="bg-success col-12 mb-1 mt-1 border d-flex itemsLeft"
          draggable="true"
          (dragstart)="dndService.onDragStart($event, item, itemList)"
-         (dragend) = "dndService.onDragEnd(i,items)"
+         (dragend) = "dndService.onDragEnd(items, item)"
          [class.border-danger]="item == itemInfo"
-         *ngFor="let item of sortFilterService.sortItems(sortFilterService.filterByName(items, nameToFilter), sortFilterService.getSortOrder()) as itemsL; trackBy: trackByFn; let i = index"
+         *ngFor="let item of sortFilterService.sortItems(sortFilterService.filterByName(items, nameToFilter), sortFilterService.getSortOrder()) as itemsL; item as item"
          (click) = "setItemInfo(item)">
       <span>{{ item.name }}</span>
       <div class="ml-auto d-flex">
@@ -29,10 +29,10 @@
     <div class="bg-success col-12 mb-1 mt-1 border d-flex itemsRight"
          draggable="true"
          (dragstart)="dndService.onDragStart($event, item, itemList)"
-         (dragend) = "dndService.onDragEnd(i,items, itemList)"
+         (dragend) = "dndService.onDragEnd(items, item)"
          [class.border-danger]="item == itemInfo"
          (click) = "setItemInfo(item)"
-         *ngFor="let item of sortFilterService.filterByFlag(items, checkedFlags) as itemsR; trackBy: trackByFn; let i = index">
+         *ngFor="let item of sortFilterService.filterByFlag(items, checkedFlags) as itemsR; item as item">
       <span>{{ item.name }}</span>
       <div class="ml-auto d-flex">
         <div

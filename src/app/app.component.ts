@@ -1,8 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Item } from './item';
 import { FlagType } from './enums/flags';
 import { SortOrder } from './enums/order';
-import { UtilsService } from './services/utils.service';
+import { SortFilterService } from './services/sort-filter.service';
 import { ItemList } from './enums/itemList';
 
 @Component({
@@ -11,20 +11,12 @@ import { ItemList } from './enums/itemList';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  sortOrder: SortOrder = SortOrder.reverse;
+  @Input() itemInfoOut: Item;
 
-  itemInfo: Item = new Item;
+  itemInfo: Item = new Item();
+  checkedFlags: FlagType[] = [];
   FlagType = FlagType;
   ItemList = ItemList;
-  checkedFlags: FlagType[];
 
-  constructor(private cdRef: ChangeDetectorRef, private utilsService: UtilsService ) {}
-
-  ngAfterViewChecked() {
-    this.itemInfo = this.utilsService.receiveItemInfo();
-    this.cdRef.detectChanges();
-  }
-
-
-
+  constructor(private utilsService: SortFilterService ) {}
 }

@@ -1,26 +1,16 @@
 import { Injectable } from '@angular/core';
 import { FlagType } from '../enums/flags';
 import { Item } from '../item';
-import { Subject } from 'rxjs';
-import { ItemList } from '../enums/itemList';
 import {SortOrder} from '../enums/order';
 
 @Injectable ({
         providedIn: 'root'
 })
 
-export class UtilsService {
-  itemInfo: Item = new Item;
+export class SortFilterService {
+  sortOrder: SortOrder = SortOrder.reverse;
 
   constructor() {}
-
-  sendItemInfo(item: Item) {
-      this.itemInfo = item;
-  }
-
-  receiveItemInfo(): Item {
-      return this.itemInfo;
-  }
 
   filterByFlag(items: Item[], checkedFlags: FlagType[]): Item[] {
     function isContainAll(item: Item, checkedFlags: FlagType[]): boolean {
@@ -48,8 +38,7 @@ export class UtilsService {
     (item => isContainAll(item, checkedFlags));
   }
 
-  nameFilter(items: Item[], searchText: string): Item[] {
-   // let t = Date.now();
+  filterByName(items: Item[], searchText: string): Item[] {
     if (!searchText) {
       return items;
     }
@@ -61,12 +50,10 @@ export class UtilsService {
     searchText = searchText.toLowerCase();
 
     return items.filter( item => {
-    //  console.log("Process time ", Date.now()-t);
       return item.name.toLowerCase().includes(searchText);
     });
   }
 
-  sortOrder: SortOrder = SortOrder.reverse;
   sortItems(items: Item[], order: SortOrder): Item[] {
     let comparator;
     const directCompareByName = function(a: Item, b: Item) {
@@ -77,7 +64,6 @@ export class UtilsService {
       case SortOrder.straight:
         comparator = directCompareByName;
         break;
-
       case SortOrder.reverse:
         comparator = function(a: Item, b: Item) {
           return directCompareByName(a, b) * (-1);

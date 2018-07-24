@@ -5,10 +5,10 @@ items-l, items-r  {
     position: relative;
     width: 24px;
     height: 24px;
-    background: url(images/unknown_flag24.png);
+    background: url(assets/images/unknown_flag24.png);
 }
 .default-bg {
-    background: url(images/unknown_flag24.png);
+    background: url(assets/images/unknown_flag24.png);
 }
 .list {
     overflow: auto;
@@ -20,16 +20,16 @@ items-l, items-r  {
 }
 
 .flower {
-    background: url(images/flower24.png);
+    background: url(assets/images/flower24.png);
 }
 .flash{
-    background: url(images/flash24.png);
+    background: url(assets/images/flash24.png);
 }
 .sun {
-    background: url(images/sun24.png);
+    background: url(assets/images/sun24.png);
 }
 .heart{
-    background: url(images/heart24.png);
+    background: url(assets/images/heart24.png);
 }
 .checkbox input[type=checkbox] {
     display:none;

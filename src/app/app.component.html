@@ -9,7 +9,8 @@
         </div>
         <items [itemList]="ItemList.left"
                [nameToFilter]="nameToFilter"
-               [itemInfo]="itemInfo"></items>
+               [itemInfo]="itemInfo"
+               (itemInfoOut)="itemInfo = $event"></items>
       </div>
 
       <div class="col-3 text-center info py-2">INFO
@@ -30,7 +31,8 @@
         </div>
         <items [itemList]="ItemList.right"
                [itemInfo]="itemInfo"
-               [checkedFlags]="checkedFlags"></items>
+               [checkedFlags]="checkedFlags"
+               (itemInfoOut)="itemInfo = $event"></items>
       </div>
 
   </div>

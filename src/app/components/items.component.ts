@@ -36,9 +36,6 @@ export class ItemsComponent implements OnInit {
     this.restApiService.receiveItems().subscribe((items) => this.items = items);
   }
 
-  trackByFn(item, index) {
-    return item.name;
-  }
   setItemInfo(item: Item) {
     this.itemInfoOut.emit(item);
   }
