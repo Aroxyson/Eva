@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { UtilsService } from '../services/utils.service';
+import { SortFilterService } from '../services/sort-filter.service';
 import { FlagType, FlagsHelpers } from '../enums/flags';
 
 @Component
@@ -19,7 +19,7 @@ export class FilterFlagsComponent implements OnInit {
   checkedFlags: FlagType[] = [];
   FlagsType = FlagType;
 
-  constructor(private utilsService: UtilsService) {}
+  constructor(private utilsService: SortFilterService) {}
 
   ngOnInit() {
       this.initFilterFlags();

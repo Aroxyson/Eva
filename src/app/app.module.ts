@@ -10,7 +10,7 @@ import { NameSort } from './pipes/name-sort.pipe';
 import { FilterByFlags } from './pipes/filter-by-flags.pipe';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { FilterFlagsComponent } from './components/filter-flags.component';
-import { UtilsService } from './services/utils.service';
+import { SortFilterService } from './services/sort-filter.service';
 import { ItemsComponent} from './components/items.component';
 import {DragulaModule} from 'ng2-dragula';
 
@@ -32,7 +32,7 @@ import {DragulaModule} from 'ng2-dragula';
     FormsModule,
     DragulaModule
   ],
-  providers: [RestApiService, UtilsService],
+  providers: [RestApiService, SortFilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

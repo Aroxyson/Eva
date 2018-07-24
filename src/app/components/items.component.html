@@ -1,41 +1,42 @@
 <div *ngIf = "itemList == ItemList.left">
-  <input type="button" value="Items" (click)="getItems(itemsLeft)">
+  <input type="button" value="Items" (click)="getItems(items)">
   <div class="list"
-       (drop)="onDrop($event, itemList)"
-       (dragover)="allowDrop($event)">
-    <div class="bg-success col-12 mb-1 mt-1 border d-flex"
+       (drop)="dndService.onDrop($event, items, itemList)"
+       (dragover)="dndService.allowDrop($event)">
+    <div class="bg-success col-12 mb-1 mt-1 border d-flex itemsLeft"
          draggable="true"
-         (dragstart)="onDragStart($event, itemL)"
-         (dragend) = "deleteItem(index)"
-         [class.border-danger]="itemL == itemInfo"
-         *ngFor="let itemL of utilsService.sortItems(utilsService.nameFilter(itemsLeft, nameToFilter), utilsService.getSortOrder())"
-         (click) = "utilsService.sendItemInfo(itemL)">
-      <span>{{ itemL.name }}</span>
+         (dragstart)="dndService.onDragStart($event, item, itemList)"
+         (dragend) = "dndService.onDragEnd(i,items)"
+         [class.border-danger]="item == itemInfo"
+         *ngFor="let item of sortFilterService.sortItems(sortFilterService.filterByName(items, nameToFilter), sortFilterService.getSortOrder()) as itemsL; trackBy: trackByFn; let i = index"
+         (click) = "setItemInfo(item)">
+      <span>{{ item.name }}</span>
       <div class="ml-auto d-flex">
         <div
-          *ngFor="let flag of itemL.flags"
+          *ngFor="let flag of item.flags"
           class="flags {{FlagType[flag]}}">
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div *ngIf = "itemList == ItemList.right">
-  <input type="button" value="Items" (click)="getItems(itemsRight)">
+  <input type="button" value="Items" (click)="getItems(items)">
   <div class="list"
-       (drop)="onDrop($event, itemList)"
-       (dragover)="allowDrop($event)">
-    <div class="bg-success col-12 mb-1 mt-1 border d-flex"
+       (drop)="dndService.onDrop($event, items, itemList)"
+       (dragover)="dndService.allowDrop($event)">
+    <div class="bg-success col-12 mb-1 mt-1 border d-flex itemsRight"
          draggable="true"
-         (dragstart)="onDragStart($event, itemR)"
-         (dragend) = "deleteItem(index)"
-         [class.border-danger]="itemR == itemInfo"
-         (click) = "utilsService.sendItemInfo(itemR)"
-         *ngFor="let itemR of utilsService.filterByFlag(itemsRight, checkedFlags)">
-      <span>{{ itemR.name }}</span>
+         (dragstart)="dndService.onDragStart($event, item, itemList)"
+         (dragend) = "dndService.onDragEnd(i,items, itemList)"
+         [class.border-danger]="item == itemInfo"
+         (click) = "setItemInfo(item)"
+         *ngFor="let item of sortFilterService.filterByFlag(items, checkedFlags) as itemsR; trackBy: trackByFn; let i = index">
+      <span>{{ item.name }}</span>
       <div class="ml-auto d-flex">
         <div
-          *ngFor="let flag of itemR.flags"
+          *ngFor="let flag of item.flags"
           class="flags {{FlagType[flag]}}"
         ></div>
       </div>
