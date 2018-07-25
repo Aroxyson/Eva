@@ -1,14 +1,13 @@
-<div *ngIf = "itemList == ItemList.left">
   <div class="list"
        (drop)="dndService.onDrop($event, items, itemList)"
        (dragover)="dndService.allowDrop($event)">
-    <div class="bg-success col-12 mb-1 mt-1 border d-flex itemsLeft"
+    <div class="bg-success col-12 mb-1 mt-1 border d-flex"
+         [class.border-danger]="item == itemInfo"
          draggable="true"
          (dragstart)="dndService.onDragStart($event, item, itemList)"
          (dragend) = "dndService.onDragEnd(items, item)"
-         [class.border-danger]="item == itemInfo"
-         *ngFor="let item of sortFilterService.sortItems(sortFilterService.filterByName(items, nameToFilter), sortFilterService.getSortOrder()) as itemsL; item as item"
-         (click) = "setItemInfo(item)">
+         (click) = "setItemInfo(item)"
+         *ngFor="let item of sortedItems; item as item">
       <span>{{ item.name}}</span>
       <div class="ml-auto d-flex">
         <div
@@ -18,27 +17,4 @@
       </div>
     </div>
   </div>
-</div>
 
-<div *ngIf = "itemList == ItemList.right">
-  <div class="list"
-       (drop)="dndService.onDrop($event, items, itemList)"
-       (dragover)="dndService.allowDrop($event)">
-    <div class="bg-success col-12 mb-1 mt-1 border d-flex itemsRight"
-         draggable="true"
-         (dragstart)="dndService.onDragStart($event, item, itemList)"
-         (dragend) = "dndService.onDragEnd(items, item)"
-         [class.border-danger]="item == itemInfo"
-         (click) = "setItemInfo(item)"
-         *ngFor="let item of sortFilterService.filterByFlag(items, checkedFlags) as itemsR; item as item">
-      <span>{{ item.name}}</span>
-      <div class="ml-auto d-flex">
-        <div
-          *ngFor="let flag of item.flags"
-          class="flags {{FlagType[flag]}}"
-        ></div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="test"></div>

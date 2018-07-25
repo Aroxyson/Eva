@@ -24,6 +24,7 @@ export class DndService {
       this.dragged = true;
       items.push(item);
       event.dataTransfer.clearData('item');
+      event.dataTransfer.clearData('itemList');
     }
   }
 

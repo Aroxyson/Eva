@@ -14,9 +14,18 @@ export class AppComponent {
   @Input() itemInfoOut: Item;
 
   itemInfo: Item = new Item();
-  checkedFlags: FlagType[] = [];
+  checkedFlags: FlagType[];
+  sortOrder: SortOrder;
   FlagType = FlagType;
   ItemList = ItemList;
 
-  constructor(private utilsService: SortFilterService ) {}
+  constructor(private sortFilterService: SortFilterService ) {}
+
+  setCheckedFlags(event) {
+    this.checkedFlags = event;
+  }
+
+  getCheckedFlags() {
+    return this.checkedFlags;
+  }
 }

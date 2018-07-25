@@ -74,10 +74,11 @@ export class SortFilterService {
   }
 
   invertSortOrder(cbSortOrder: boolean) {
-    this.sortOrder = cbSortOrder ? SortOrder.straight : SortOrder.reverse;
+    return this.sortOrder = cbSortOrder ? SortOrder.straight : SortOrder.reverse;
   }
 
   getSortOrder(): SortOrder {
+    console.log(this.sortOrder);
     return this.sortOrder;
   }
 }

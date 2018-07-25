@@ -1,9 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { SortFilterService } from '../services/sort-filter.service';
-import { FlagType, FlagsHelpers } from '../enums/flags';
+import { FlagType } from '../enums/flags';
 
-@Component
-({
+@Component ({
     selector: 'filter-flags',
     template: `<div class="checkbox" *ngFor="let flag of filterFlags">
                <input  type="checkbox" id={{flag.name}}
@@ -17,9 +15,8 @@ export class FilterFlagsComponent implements OnInit {
 
   filterFlags: Array<any> = [];
   checkedFlags: FlagType[] = [];
-  FlagsType = FlagType;
 
-  constructor(private utilsService: SortFilterService) {}
+  constructor() {}
 
   ngOnInit() {
       this.initFilterFlags();
@@ -30,16 +27,6 @@ export class FilterFlagsComponent implements OnInit {
   }
 
   initFilterFlags() {
-    const flagsLength: number = FlagsHelpers.getSize();
-    // for (let i = 0; i < flagsLength; i++) {
-    //   this.filterFlags.push
-    //   (
-    //       {
-    //         'name': FlagType[i],
-    //         'checked': false
-    //       }
-    //   );
-    // }
     for (let value in FlagType) {
       this.filterFlags.push
       (
@@ -54,17 +41,18 @@ export class FilterFlagsComponent implements OnInit {
   addToCheckedFlags(input: HTMLInputElement, flag: any) {
       const index = this.checkedFlags.indexOf(flag.name);
       if (input.checked === true) {
-        if (index == -1) {
+        if (index === -1) {
             this.checkedFlags.push(flag.name);
+            this.checkedFlags = this.checkedFlags.slice();
             flag.checked = true;
         }
       } else {
-        if (index != -1) {
+        if (index !== -1) {
           this.checkedFlags.splice(index, 1);
+          this.checkedFlags = this.checkedFlags.slice();
           flag.checked = false;
         }
       }
-      console.log(this.checkedFlags);
       this.sendCheckedFlags();
     }
 }
