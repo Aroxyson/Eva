@@ -28,7 +28,7 @@ export class ItemsComponent implements OnInit {
     private sortFilterService: SortFilterService,
     private dndService: DndService) {}
 
-  public ngOnInit() {
+  ngOnInit() {
    this.initItems();
   }
 
@@ -38,9 +38,5 @@ export class ItemsComponent implements OnInit {
 
   setItemInfo(item: Item) {
     this.itemInfoOut.emit(item);
-  }
-
-  getItems(items: Item[]) {
-    console.log('getItems::', items);
   }
 }

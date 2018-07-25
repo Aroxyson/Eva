@@ -13,6 +13,7 @@ import { FilterFlagsComponent } from './components/filter-flags.component';
 import { SortFilterService } from './services/sort-filter.service';
 import { ItemsComponent} from './components/items.component';
 import {DragulaModule} from 'ng2-dragula';
+import {DndService} from './services/dnd.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {DragulaModule} from 'ng2-dragula';
     FormsModule,
     DragulaModule
   ],
-  providers: [RestApiService, SortFilterService],
+  providers: [RestApiService, SortFilterService, DndService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
 <div *ngIf = "itemList == ItemList.left">
-  <input type="button" value="Items" (click)="getItems(items)">
   <div class="list"
        (drop)="dndService.onDrop($event, items, itemList)"
        (dragover)="dndService.allowDrop($event)">
@@ -10,7 +9,7 @@
          [class.border-danger]="item == itemInfo"
          *ngFor="let item of sortFilterService.sortItems(sortFilterService.filterByName(items, nameToFilter), sortFilterService.getSortOrder()) as itemsL; item as item"
          (click) = "setItemInfo(item)">
-      <span>{{ item.name }}</span>
+      <span>{{ item.name}}</span>
       <div class="ml-auto d-flex">
         <div
           *ngFor="let flag of item.flags"
@@ -22,7 +21,6 @@
 </div>
 
 <div *ngIf = "itemList == ItemList.right">
-  <input type="button" value="Items" (click)="getItems(items)">
   <div class="list"
        (drop)="dndService.onDrop($event, items, itemList)"
        (dragover)="dndService.allowDrop($event)">
@@ -33,7 +31,7 @@
          [class.border-danger]="item == itemInfo"
          (click) = "setItemInfo(item)"
          *ngFor="let item of sortFilterService.filterByFlag(items, checkedFlags) as itemsR; item as item">
-      <span>{{ item.name }}</span>
+      <span>{{ item.name}}</span>
       <div class="ml-auto d-flex">
         <div
           *ngFor="let flag of item.flags"
@@ -43,3 +41,4 @@
     </div>
   </div>
 </div>
+<div class="test"></div>
