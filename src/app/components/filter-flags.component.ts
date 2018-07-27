@@ -1,13 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { FlagType } from '../enums/flags';
+import {FlagType} from '../enums/flags';
 
 @Component ({
     selector: 'filter-flags',
-    template: `<div class="checkbox" *ngFor="let flag of filterFlags">
-               <input  type="checkbox" id={{flag.name}}
-               (change)="addToCheckedFlags($event.target, flag)">
-               <label for="{{flag.name}}" class="default-bg {{flag.name}}" [class.active]="flag.checked"></label>
-               </div>`
+    templateUrl: './filter-flags.component.html'
 })
 
 export class FilterFlagsComponent implements OnInit {
@@ -19,7 +15,7 @@ export class FilterFlagsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-      this.initFilterFlags();
+    this.initFilterFlags();
   }
 
   sendCheckedFlags() {
@@ -39,20 +35,20 @@ export class FilterFlagsComponent implements OnInit {
   }
 
   addToCheckedFlags(input: HTMLInputElement, flag: any) {
-      const index = this.checkedFlags.indexOf(flag.name);
-      if (input.checked === true) {
-        if (index === -1) {
-            this.checkedFlags.push(flag.name);
-            this.checkedFlags = this.checkedFlags.slice();
-            flag.checked = true;
-        }
-      } else {
-        if (index !== -1) {
-          this.checkedFlags.splice(index, 1);
+    const index = this.checkedFlags.indexOf(flag.name);
+    if (input.checked) {
+      if (index === -1) {
+          this.checkedFlags.push(flag.name);
           this.checkedFlags = this.checkedFlags.slice();
-          flag.checked = false;
-        }
+          flag.checked = true;
       }
-      this.sendCheckedFlags();
+    } else {
+      if (index !== -1) {
+        this.checkedFlags.splice(index, 1);
+        this.checkedFlags = this.checkedFlags.slice();
+        flag.checked = false;
+      }
     }
+    this.sendCheckedFlags();
+  }
 }

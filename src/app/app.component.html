@@ -4,14 +4,17 @@
       <div class="col-3 mr-auto bg-info">
         <div class="p-2">
           <span class="align-self-center">Sort:</span>
-          <input [(ngModel)]="cbSortOrder" type="checkbox" (change)="sortOrder = sortFilterService.invertSortOrder(cbSortOrder)" class="align-self-center">
-          <input [(ngModel)]="nameToFilter" placeholder="Name filter" class="col-9 ml-auto">
+          <input class="align-self-center"
+                 [(ngModel)]="cbSortOrder" type="checkbox"
+                 (change)="sortOrder = sortFilterService.invertSortOrder(cbSortOrder)">
+          <input [(ngModel)]="nameToFilter" placeholder="Filter by name" class="col-9 ml-auto">
         </div>
         <items [sortOrder]="sortOrder"
                [itemList]="ItemList.left"
                [nameToFilter]="nameToFilter"
                [itemInfo]="itemInfo"
-               (itemInfoOut)="itemInfo = $event"></items>
+               (itemInfoOut)="itemInfo = $event">
+        </items>
       </div>
 
       <div class="col-3 text-center info py-2">INFO
@@ -25,15 +28,15 @@
       </div>
 
       <div class="col-3 ml-auto bg-info">
-        <div class="row p-2">
-            <span>Filter:</span>
-            <filter-flags class="d-flex"
-              (checkedFlagsOut)="checkedFlags = $event"></filter-flags>
+        <div class="row p-2 px-3">
+          <span>Filter:</span>
+          <filter-flags class="d-flex" (checkedFlagsOut)="checkedFlags = $event"></filter-flags>
         </div>
         <items [itemList]="ItemList.right"
                [itemInfo]="itemInfo"
                [checkedFlags]="checkedFlags"
-               (itemInfoOut)="itemInfo = $event"></items>
+               (itemInfoOut)="itemInfo = $event">
+        </items>
       </div>
 
   </div>

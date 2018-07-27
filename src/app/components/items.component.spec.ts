@@ -7,6 +7,8 @@ import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {ItemList} from '../enums/itemList';
 import {SortFilterService} from '../services/sort-filter.service';
+import {RestApiService} from '../services/rest-api.service';
+import {FlagType} from '../enums/flags';
 
 describe('ItemsComponent', () => {
   let component: ItemsComponent;
@@ -14,6 +16,7 @@ describe('ItemsComponent', () => {
   let debugElement: DebugElement;
   let dndService: DndService;
   let sortFilterService: SortFilterService;
+  let restApiService: RestApiService;
   const item: Item = new Item({'name': '', 'flags': ['flower', 'flash']});
 
   beforeEach(() => {
@@ -23,14 +26,15 @@ describe('ItemsComponent', () => {
       ],
       providers: [
         HttpClient,
-        HttpHandler
+        HttpHandler,
       ]
-    }).compileComponents();
+    });
     fixture = TestBed.createComponent(ItemsComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
     dndService = debugElement.injector.get(DndService);
     sortFilterService = debugElement.injector.get(SortFilterService);
+    restApiService = debugElement.injector.get(RestApiService);
   });
   it('should call initItem method', async(() => {
     spyOn(component, 'initItems');
@@ -48,22 +52,31 @@ describe('ItemsComponent', () => {
     expect(component.itemInfo).toEqual(item);
   }));
   it('should call dndService method', () => {
-    component.itemList = ItemList.left;
-    component.items.push(item);
-    fixture.detectChanges();
+    const event: CustomEvent & { dataTransfer?: DataTransfer } = new CustomEvent('dragstart', { bubbles: true, cancelable: true });
+    event.dataTransfer = new DataTransfer();
     const onDragStartSpy = spyOn(dndService, 'onDragStart').and.callThrough();
-    debugElement
-      .query(By.css('.itemsLeft'))
-      .triggerEventHandler('dragstart', null);
+    component.itemList = ItemList.left;
+    component.sortedItems.push(item);
     fixture.detectChanges();
+    debugElement
+      .query(By.css('.item'))
+      .triggerEventHandler('dragstart', event);
     expect(onDragStartSpy).toHaveBeenCalled();
   });
+  it('should call restApiService method', () => {
+    const receiveItemsSpy = spyOn(restApiService, 'receiveItems').and.callThrough();
+    fixture.detectChanges();
+    expect(receiveItemsSpy).toHaveBeenCalled();
+  });
   it('should call sortFilterService method', () => {
-    component.itemList = ItemList.left;
-    component.items.push(item);
-    fixture.detectChanges();
-    const getSortOrderSpy = spyOn(sortFilterService, 'getSortOrder').and.callThrough();
-    fixture.detectChanges();
-    expect(getSortOrderSpy).toHaveBeenCalled();
+    const filterByFlagSpy = spyOn(sortFilterService, 'filterByFlag').and.callThrough();
+    component.items = [
+      new Item({'name': 'banana', 'flags': ['flower', 'heart', 'sun', 'flash']}),
+      new Item({'name': 'apple', 'flags': ['flower', 'flash']}),
+      new Item({'name': 'watermelon', 'flags': ['heart', 'sun', 'flash']})
+    ];
+    const checkedFlags: FlagType[] = [FlagType[FlagType.flash]];
+    component.setRightList(checkedFlags);
+    expect(filterByFlagSpy).toHaveBeenCalled();
   });
 });

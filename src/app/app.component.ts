@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
-import { Item } from './item';
-import { FlagType } from './enums/flags';
-import { SortOrder } from './enums/order';
-import { SortFilterService } from './services/sort-filter.service';
-import { ItemList } from './enums/itemList';
+import {Item} from './item';
+import {FlagType} from './enums/flags';
+import {SortOrder} from './enums/order';
+import {SortFilterService} from './services/sort-filter.service';
+import {ItemList} from './enums/itemList';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +20,4 @@ export class AppComponent {
   ItemList = ItemList;
 
   constructor(private sortFilterService: SortFilterService ) {}
-
-  setCheckedFlags(event) {
-    this.checkedFlags = event;
-  }
-
-  getCheckedFlags() {
-    return this.checkedFlags;
-  }
 }

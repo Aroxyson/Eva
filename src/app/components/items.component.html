@@ -1,7 +1,7 @@
   <div class="list"
        (drop)="dndService.onDrop($event, items, itemList)"
        (dragover)="dndService.allowDrop($event)">
-    <div class="bg-success col-12 mb-1 mt-1 border d-flex"
+    <div class="bg-success col-12 mb-1 mt-1 border d-flex item"
          [class.border-danger]="item == itemInfo"
          draggable="true"
          (dragstart)="dndService.onDragStart($event, item, itemList)"

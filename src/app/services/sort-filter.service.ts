@@ -8,23 +8,21 @@ import {SortOrder} from '../enums/order';
 })
 
 export class SortFilterService {
-  sortOrder: SortOrder = SortOrder.reverse;
-
   constructor() {}
 
   filterByFlag(items: Item[], checkedFlags: FlagType[]): Item[] {
-    function isContainAll(item: Item, checkedFlags: FlagType[]): boolean {
-      for (let i = 0; i < checkedFlags.length; i++) {
-        if (item.flags.indexOf(checkedFlags[i]) < 0) {
+    function isContainAll(item: Item, checkedFlagsFunc: FlagType[]): boolean {
+      for (let i = 0; i < checkedFlagsFunc.length; i++) {
+        if (item.flags.indexOf(checkedFlagsFunc[i]) < 0) {
           return false;
         }
       }
       return true;
     }
 
-    function isContainAny(item: Item, checkedFlags: FlagType[]): boolean {
-      for (let i = 0; i < checkedFlags.length; i++) {
-        if (item.flags.indexOf(checkedFlags[i]) >= 0) {
+    function isContainAny(item: Item, checkedFlagsFunc: FlagType[]): boolean {
+      for (let i = 0; i < checkedFlagsFunc.length; i++) {
+        if (item.flags.indexOf(checkedFlagsFunc[i]) >= 0) {
           return true;
         }
       }
@@ -73,12 +71,7 @@ export class SortFilterService {
     return items.sort(comparator);
   }
 
-  invertSortOrder(cbSortOrder: boolean) {
-    return this.sortOrder = cbSortOrder ? SortOrder.straight : SortOrder.reverse;
-  }
-
-  getSortOrder(): SortOrder {
-    console.log(this.sortOrder);
-    return this.sortOrder;
+  invertSortOrder(cbSortOrder: boolean): SortOrder {
+    return cbSortOrder ? SortOrder.straight : SortOrder.reverse;
   }
 }

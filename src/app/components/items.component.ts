@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ItemList} from '../enums/itemList';
 import {RestApiService} from '../services/rest-api.service';
 import {Item} from '../item';
@@ -20,9 +20,9 @@ export class ItemsComponent implements OnInit, OnChanges {
   @Input() sortOrder: SortOrder;
   @Output() itemInfoOut: EventEmitter<Item> = new EventEmitter<Item>();
 
-  items: Item[];
+  items: Item[] = [];
   FlagType = FlagType;
-  sortedItems: Item[];
+  sortedItems: Item[] = [];
 
   constructor(
     private restApiService: RestApiService,
@@ -41,15 +41,10 @@ export class ItemsComponent implements OnInit, OnChanges {
 
     switch (this.itemList) {
       case ItemList.left:
-        if (changes.nameToFilter || changes.sortOrder) {
-          this.sortedItems = this.sortFilterService.sortItems(
-            this.sortFilterService.filterByName(this.items, nameToFilterCur), sortOrderCur);
-        }
+        this.sortedItems = (changes.nameToFilter || changes.sortOrder) ? this.setLeftList(sortOrderCur, nameToFilterCur) : this.sortedItems;
         break;
       case ItemList.right:
-        if (changes.checkedFlags) {
-          this.sortedItems = this.sortFilterService.filterByFlag(this.items, checkedFlagsCur);
-        }
+        this.sortedItems = changes.checkedFlags ? this.setRightList(checkedFlagsCur) : this.sortedItems;
         break;
     }
   }
@@ -59,13 +54,28 @@ export class ItemsComponent implements OnInit, OnChanges {
       this.items = items;
       switch (this.itemList) {
         case ItemList.left:
-          this.sortedItems = this.sortFilterService.sortItems(this.items, SortOrder.reverse);
+          this.sortedItems = this.setLeftList(SortOrder.reverse);
           break;
         case ItemList.right:
-          this.sortedItems = this.sortFilterService.filterByFlag(this.items, null);
+          this.sortedItems = this.setRightList();
           break;
       }
-    });
+    }, error => {
+      console.log(error); });
+  }
+
+  setLeftList(sortOrder: SortOrder, nameToFilter?: string): Item[] {
+    if (sortOrder !== undefined) {
+      if (nameToFilter) {
+        return this.sortFilterService.sortItems(this.sortFilterService.filterByName(this.items, nameToFilter), sortOrder);
+      } else {
+        return this.sortFilterService.sortItems(this.items, sortOrder);
+      }
+    }
+  }
+
+  setRightList(checkedFlags?: FlagType[]): Item[] {
+    return checkedFlags ? this.sortFilterService.filterByFlag(this.items, checkedFlags) : this.items;
   }
 
   setItemInfo(item: Item) {
