@@ -25,7 +25,7 @@ describe('RestApiService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  it('should have made one request to GET data from expected URL', () => {
+  it('should have made one request to GET data', () => {
     const expectedData: Item[] = [
       new Item({'name': 'banana', 'flags': ['flower', 'heart', 'sun', 'flash']}),
       new Item({'name': 'apple', 'flags': ['flower', 'flash']}),

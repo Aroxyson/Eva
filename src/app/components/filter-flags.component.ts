@@ -34,9 +34,9 @@ export class FilterFlagsComponent implements OnInit {
     }
   }
 
-  addToCheckedFlags(input: HTMLInputElement, flag: any) {
+  addToCheckedFlags(event, flag: any) {
     const index = this.checkedFlags.indexOf(flag.name);
-    if (input.checked) {
+    if (event.target.checked) {
       if (index === -1) {
           this.checkedFlags.push(flag.name);
           this.checkedFlags = this.checkedFlags.slice();

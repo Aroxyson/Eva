@@ -1,5 +1,5 @@
 <div class="checkbox" *ngFor="let flag of filterFlags">
   <input  type="checkbox" id={{flag.name}}
-          (change)="addToCheckedFlags($event.target, flag)">
+          (change)="addToCheckedFlags($event, flag)">
   <label for="{{flag.name}}" class="default-bg {{flag.name}}" [class.active]="flag.checked"></label>
 </div>

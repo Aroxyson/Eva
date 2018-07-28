@@ -20,4 +20,11 @@ export class AppComponent {
   ItemList = ItemList;
 
   constructor(private sortFilterService: SortFilterService ) {}
+
+  setItemInfo(event) {
+    this.itemInfo = event;
+  }
+  setCheckedFlags(event) {
+    this.checkedFlags = event;
+  }
 }

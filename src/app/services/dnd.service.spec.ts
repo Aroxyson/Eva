@@ -34,8 +34,8 @@ describe('DndService', () => {
     const onDropSpy = spyOn(service, 'onDrop').and.callThrough();
     event.dataTransfer = new DataTransfer();
 
-    event.dataTransfer.items.add(JSON.stringify(item), 'item');
-    event.dataTransfer.items.add(ItemList[ItemList.left], 'itemList');
+    event.dataTransfer.setData(JSON.stringify(item), 'item');
+    event.dataTransfer.setData(ItemList[ItemList.left], 'itemList');
     element.addEventListener('drop', e => {service.onDrop(e,  items, ItemList.right); });
     element.dispatchEvent(event);
 

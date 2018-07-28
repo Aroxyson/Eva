@@ -8,7 +8,7 @@
          (dragend) = "dndService.onDragEnd(items, item)"
          (click) = "setItemInfo(item)"
          *ngFor="let item of sortedItems; item as item">
-      <span>{{ item.name}}</span>
+      <span>{{item.name}}</span>
       <div class="ml-auto d-flex">
         <div
           *ngFor="let flag of item.flags"
