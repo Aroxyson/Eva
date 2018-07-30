@@ -1,10 +1,10 @@
 import {TestBed, async, ComponentFixture} from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {SortFilterService} from './services/sort-filter.service';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {Item} from './item';
+import {Item} from './core/item';
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('AppComponent',  () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -21,14 +21,22 @@ describe('AppComponent',  () => {
       providers: [
         SortFilterService
       ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(AppComponent);
     sortFilterService = TestBed.get(SortFilterService);
   });
   it('should create the app', async(() => {
     const app = fixture.debugElement.componentInstance;
+
     expect(app).toBeTruthy();
+  }));
+  it('should have child components', async(() => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelectorAll('filter-flags').length).toBe(1);
+    expect(compiled.querySelectorAll('items').length).toBe(2);
   }));
   it('should bind Input value to ngModel', () => {
     fixture.detectChanges();

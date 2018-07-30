@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ItemList} from '../enums/itemList';
 import {RestApiService} from '../services/rest-api.service';
-import {Item} from '../item';
+import {Item} from '../core/item';
 import {FlagType} from '../enums/flags';
 import {SortFilterService} from '../services/sort-filter.service';
 import {DndService} from '../services/dnd.service';
@@ -11,7 +11,6 @@ import {SortOrder} from '../enums/order';
   selector: 'items',
   templateUrl: './items.component.html'
 })
-
 export class ItemsComponent implements OnInit, OnChanges {
   @Input() itemList: ItemList;
   @Input() nameToFilter: string;
@@ -61,7 +60,8 @@ export class ItemsComponent implements OnInit, OnChanges {
           break;
       }
     }, error => {
-      console.log(error); });
+      console.log(error.message);
+    });
   }
 
   setLeftList(sortOrder: SortOrder, nameToFilter?: string): Item[] {

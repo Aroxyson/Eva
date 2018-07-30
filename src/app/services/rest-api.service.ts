@@ -1,27 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { Item } from '../item';
+import {Item} from '../core/item';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class RestApiService {
-  TEST_URL = '/assets/db.json';
-  URL = '/api/items';
+  TEST_URL = '/assets/items.json';
+  API_URL = '/api/items';
   limit = 100;
   out: Item[];
 
-  constructor( private http: HttpClient) {}
+  constructor (private http: HttpClient) {}
 
-  public receiveItems(): Observable < Item[] >  {
+  public receiveItems(): Observable <Item[]>  {
     return this.http
-      .get(this.URL)
+      .get(this.API_URL)
       .map(response => {
           const items = response;
           this.out = [];
@@ -31,14 +30,14 @@ export class RestApiService {
             }
           }
           if (this.out.length === 0) {
-            console.log('ERROR::No data in ', this.URL);
+            console.log('ERROR::No data in ', this.API_URL);
             throw new Error('No data');
           }
           return this.out;
       })
       .catch(() => {
-        console.log('ERROR::Receiving from ', this.URL, ' is unsuccessful');
-        console.log('ERROR::Getting from ', this.TEST_URL, '...');
+        console.log('ERROR::Receiving from ', this.API_URL, ' is unsuccessful');
+        console.log('Getting data from ', this.TEST_URL, '...');
         return this.http
           .get(this.TEST_URL)
           .map(response => {
@@ -51,9 +50,12 @@ export class RestApiService {
             }
             return this.out;
           })
-          .catch((err: HttpErrorResponse) => {
-            return throwError(err);
-          });
+          .catch(this.handleError);
       });
+  }
+
+  handleError(error: HttpErrorResponse) {
+    console.error('RestApiService::handleError', error.message);
+    return throwError(error);
   }
 }

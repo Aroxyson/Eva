@@ -1,5 +1,5 @@
 import {TestBed} from '@angular/core/testing';
-import {Item} from '../item';
+import {Item} from '../core/item';
 import {SortFilterService} from "./sort-filter.service";
 import {FlagType} from "../enums/flags";
 import {SortOrder} from "../enums/order";
@@ -21,6 +21,9 @@ describe('SortFilterService', () => {
       new Item({'name': 'watermelon', 'flags': ['heart', 'sun', 'flash']}),
       new Item({"name": "orange", "flags": ["heart"]})
     ];
+  });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
   it('should filter array by flag', () => {
     const checkedFlags: FlagType[] = [FlagType[FlagType.flash]];

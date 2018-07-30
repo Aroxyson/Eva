@@ -1,5 +1,4 @@
-export enum SortOrder
-{
+export enum SortOrder {
     straight,
     reverse
 }

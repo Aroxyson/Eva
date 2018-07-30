@@ -1,9 +1,9 @@
-import {TestBed, async, ComponentFixture} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ItemsComponent} from './items.component';
 import {HttpClient, HttpHandler} from '@angular/common/http';
-import {Item} from '../item';
+import {Item} from '../core/item';
 import {DndService} from '../services/dnd.service';
-import {DebugElement, NO_ERRORS_SCHEMA, SimpleChange} from '@angular/core';
+import {DebugElement, SimpleChange} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {ItemList} from '../enums/itemList';
 import {SortFilterService} from '../services/sort-filter.service';
@@ -28,8 +28,7 @@ describe('ItemsComponent', () => {
       providers: [
         HttpClient,
         HttpHandler
-      ],
-      schemas: [ NO_ERRORS_SCHEMA ]
+      ]
     });
     fixture = TestBed.createComponent(ItemsComponent);
     component = fixture.componentInstance;
@@ -41,20 +40,23 @@ describe('ItemsComponent', () => {
   it('should call initItem method', async(() => {
     spyOn(component, 'initItems');
     fixture.detectChanges();
+
     expect(component.initItems).toHaveBeenCalled();
   }));
   it('should call dndService method', () => {
-    const event: CustomEvent & { dataTransfer?: DataTransfer } = new CustomEvent('dragstart', { bubbles: true, cancelable: true });
+    const event: CustomEvent & { dataTransfer?: DataTransfer } = new CustomEvent('dragstart');
     event.dataTransfer = new DataTransfer();
     const onDragStartSpy = spyOn(dndService, 'onDragStart').and.callThrough();
     component.sortedItems.push(item);
     fixture.detectChanges();
     debugElement.query(By.css('.item')).triggerEventHandler('dragstart', event);
+
     expect(onDragStartSpy).toHaveBeenCalled();
   });
   it('should call restApiService method', () => {
     const receiveItemsSpy = spyOn(restApiService, 'receiveItems').and.callThrough();
     fixture.detectChanges();
+
     expect(receiveItemsSpy).toHaveBeenCalled();
   });
   it('should call sortFilterService method', () => {
@@ -66,6 +68,7 @@ describe('ItemsComponent', () => {
     ];
     const checkedFlags: FlagType[] = [FlagType[FlagType.flash]];
     component.setRightList(checkedFlags);
+
     expect(filterByFlagSpy).toHaveBeenCalled();
   });
   it('should return filtered and sorted left list', () => {
@@ -76,6 +79,7 @@ describe('ItemsComponent', () => {
     ];
     const filteredItem = [new Item({'name': 'apple', 'flags': ['flower', 'flash']})];
     const expected = component.setLeftList(SortOrder.reverse, 'app');
+
     expect(expected).toEqual(filteredItem);
   });
   it('should return filtered right list', () => {
@@ -90,6 +94,7 @@ describe('ItemsComponent', () => {
       new Item({'name': 'watermelon', 'flags': ['heart', 'sun', 'flash']})
     ];
     const actual = component.setRightList(checkedFlags);
+
     expect(actual).toEqual(expected);
   });
   it('should emit @Output itemInfo', async(() => {
@@ -104,21 +109,25 @@ describe('ItemsComponent', () => {
     component.sortedItems.push(item);
     fixture.detectChanges();
     const element = debugElement.query(By.css('.item'));
+
     expect(element.nativeElement.classList).toContain('border-danger');
   }));
-  it('should not change sortedItems', async(() => {
+  it('should change sortedItems on change checkedFlags', async(() => {
     fixture.detectChanges();
     component.itemList = ItemList.right;
-    component.sortedItems = [
+    component.items = [
       new Item({'name': 'banana', 'flags': ['flower', 'heart', 'sun', 'flash']}),
       new Item({'name': 'apple', 'flags': ['flower']}),
       new Item({'name': 'watermelon', 'flags': ['heart', 'sun', 'flash']})
     ];
-    const expected = component.sortedItems;
-    component.checkedFlags = [FlagType[FlagType.flash]];
+    const expected = [
+      new Item({'name': 'banana', 'flags': ['flower', 'heart', 'sun', 'flash']}),
+      new Item({'name': 'watermelon', 'flags': ['heart', 'sun', 'flash']})
+    ];
     component.ngOnChanges({
-      itemInfo: new SimpleChange(null, [],false)
+      checkedFlags: new SimpleChange(null, [FlagType[FlagType.flash]],false)
     });
+
     expect(component.sortedItems).toEqual(expected);
   }));
 });

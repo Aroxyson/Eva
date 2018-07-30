@@ -10,8 +10,7 @@ describe('FilterFlagsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         FilterFlagsComponent
-      ],
-      providers: []
+      ]
     }).compileComponents();
     fixture = TestBed.createComponent(FilterFlagsComponent);
     component = fixture.componentInstance;
@@ -32,6 +31,7 @@ describe('FilterFlagsComponent', () => {
   }));
   it('should initialize FilterFlags', async(() => {
     fixture.detectChanges();
+
     expect(component.filterFlags).not.toEqual([]);
   }));
   it('should emit checkedFlagsOut', async(() => {

@@ -5,7 +5,6 @@ import {FlagType} from '../enums/flags';
     selector: 'filter-flags',
     templateUrl: './filter-flags.component.html'
 })
-
 export class FilterFlagsComponent implements OnInit {
   @Output() checkedFlagsOut: EventEmitter<FlagType[]> = new EventEmitter<FlagType[]>();
 

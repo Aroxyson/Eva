@@ -1,7 +1,7 @@
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AppComponent} from './app.component';
+import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {AppComponent} from './app.component';
 import {RestApiService} from './services/rest-api.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FilterFlagsComponent} from './components/filter-flags.component';
@@ -16,12 +16,11 @@ import {DndService} from './services/dnd.service';
     FilterFlagsComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
-    ReactiveFormsModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [RestApiService, SortFilterService, DndService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

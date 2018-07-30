@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {DndService} from './dnd.service';
-import {Item} from '../item';
+import {Item} from '../core/item';
 import {ItemList} from '../enums/itemList';
 
 describe('DndService', () => {
@@ -13,6 +13,9 @@ describe('DndService', () => {
     });
     service = TestBed.get(DndService);
     item = new Item({'name': 'banana', 'flags': ['flower', 'heart', 'sun', 'flash']});
+  });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
   it('should set data in DataTransfer by calling onDragStart', () => {
     const event: CustomEvent & { dataTransfer?: DataTransfer } = new CustomEvent('dragstart');
@@ -48,5 +51,13 @@ describe('DndService', () => {
     service.onDragEnd(items, item);
 
     expect(items).not.toContain(item);
+  });
+  it('should call preventDefault by calling AllowDrop', () => {
+    event = new Event('dragover');
+    const preventDefaultSpy = spyOn(event, 'preventDefault');
+
+    service.allowDrop(event);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
   });
 });

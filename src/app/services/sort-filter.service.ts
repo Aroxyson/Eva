@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { FlagType } from '../enums/flags';
-import { Item } from '../item';
+import { Item } from '../core/item';
 import {SortOrder} from '../enums/order';
 
 @Injectable ({
         providedIn: 'root'
 })
-
 export class SortFilterService {
   constructor() {}
 

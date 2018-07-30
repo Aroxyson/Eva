@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {RestApiService} from './rest-api.service';
-import {Item} from '../item';
+import {Item} from '../core/item';
 
 describe('RestApiService', () => {
   let http: HttpTestingController;
@@ -32,7 +32,7 @@ describe('RestApiService', () => {
     service.receiveItems().subscribe((data) => {
       expect(data).toEqual(expectedData);
     });
-    const req = http.expectOne(service.URL);
+    const req = http.expectOne(service.API_URL);
     expect(req.request.method).toEqual('GET');
     req.flush(expectedData);
   });

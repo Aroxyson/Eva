@@ -1,8 +1,7 @@
-import { FlagType, FlagsHelpers } from './enums/flags';
+import {FlagType} from '../enums/flags';
 
 export class Item {
-
-    name: string = '';
+    name = '';
     flags: FlagType[] = [];
 
     constructor(json_item?: any) {

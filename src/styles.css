@@ -1,54 +1,54 @@
-items-l, items-r  {
-    cursor: pointer;
+.item {
+  cursor: pointer;
 }
 .flags {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    background: url(assets/images/unknown_flag24.png);
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: url(assets/images/unknown_flag24.png);
 }
 .default-bg {
-    background: url(assets/images/unknown_flag24.png);
+  background: url(assets/images/unknown_flag24.png);
 }
 .list {
-    overflow: auto;
-    height:90vh;
+  overflow: auto;
+  height:90vh;
 }
 .info {
-    height: 100px;
-    background: #c8d6da
+  height: 100px;
+  background: #c8d6da
 }
 
 .flower {
-    background: url(assets/images/flower24.png);
+  background: url(assets/images/flower24.png);
 }
 .flash{
-    background: url(assets/images/flash24.png);
+  background: url(assets/images/flash24.png);
 }
 .sun {
-    background: url(assets/images/sun24.png);
+  background: url(assets/images/sun24.png);
 }
 .heart{
-    background: url(assets/images/heart24.png);
+  background: url(assets/images/heart24.png);
 }
 .checkbox input[type=checkbox] {
-    display:none;
+  display:none;
 }
 .checkbox label {
 	width: 24px;
-    height: 24px;
-    filter: grayscale(100%);
-    cursor: pointer;
-    margin: 0px;
+  height: 24px;
+  filter: grayscale(100%);
+  cursor: pointer;
+  margin: 0;
 }
  .checkbox {
-    position:relative;
+  position:relative;
  }
 
  .inactive {
-    filter: grayscale(100%);
+  filter: grayscale(100%);
  }
 
  .active {
-    filter: grayscale(0%) !important;
+  filter: grayscale(0%) !important;
  }
