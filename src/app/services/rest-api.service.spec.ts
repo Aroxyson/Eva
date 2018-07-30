@@ -9,8 +9,6 @@ describe('RestApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-      ],
       imports: [
         HttpClientTestingModule
       ],

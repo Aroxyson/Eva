@@ -9,8 +9,6 @@ describe('DndService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [],
-      imports: [],
       providers: [DndService]
     });
     service = TestBed.get(DndService);
@@ -31,7 +29,7 @@ describe('DndService', () => {
     expect(expectedItemsList).toEqual(dataItemsList);
   });
   it('should add value to array by calling onDrop', () => {
-    const items: Item[] = [];
+    let items: Item[] = [];
     service.dragged = false;
     const event: CustomEvent & { dataTransfer?: DataTransfer } = new CustomEvent('drop');
     event.dataTransfer = new DataTransfer();
@@ -44,8 +42,7 @@ describe('DndService', () => {
     expect(service.dragged).toEqual(true);
   });
   it('should reduce array by calling onDragEnd', () => {
-    const items: Item[] = [];
-    items.push(item);
+    let items: Item[] = [item];
     service.dragged = true;
 
     service.onDragEnd(items, item);
