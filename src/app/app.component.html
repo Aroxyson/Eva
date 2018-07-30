@@ -31,7 +31,7 @@
       <div class="col-3 ml-auto bg-info">
         <div class="row p-2 px-3">
           <span>Filter:</span>
-          <filter-flags class="d-flex" (checkedFlagsOut)="setCheckedFlags(event)"></filter-flags>
+          <filter-flags class="d-flex" (checkedFlagsOut)="setCheckedFlags($event)"></filter-flags>
         </div>
         <items [itemList]="ItemList.right"
                [itemInfo]="itemInfo"

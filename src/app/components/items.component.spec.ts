@@ -11,7 +11,7 @@ import {RestApiService} from '../services/rest-api.service';
 import {FlagType} from '../enums/flags';
 import {SortOrder} from '../enums/order';
 
-fdescribe('ItemsComponent', () => {
+describe('ItemsComponent', () => {
   let component: ItemsComponent;
   let fixture: ComponentFixture<ItemsComponent>;
   let debugElement: DebugElement;
